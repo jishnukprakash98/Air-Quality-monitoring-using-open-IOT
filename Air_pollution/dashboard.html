@@ -1,0 +1,485 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<link rel="apple-touch-icon" sizes="76x76" href="assets/img/apple-icon.png">
+	<link rel="icon" type="image/png" sizes="96x96" href="assets/img/favicon.png">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+	<title>Air Pollution Analysis</title>
+
+	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+    <meta name="viewport" content="width=device-width" />
+
+
+    <!-- Bootstrap core CSS     -->
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Animation library for notifications   -->
+    <link href="assets/css/animate.min.css" rel="stylesheet"/>
+
+    <!--  Paper Dashboard core CSS    -->
+    <link href="assets/css/paper-dashboard.css" rel="stylesheet"/>
+
+
+    <!--  CSS for Demo Purpose, don't include it in your project     -->
+    <link href="assets/css/demo.css" rel="stylesheet" />
+
+
+    <!--  Fonts and icons     -->
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet' type='text/css'>
+    <link href="assets/css/themify-icons.css" rel="stylesheet">
+	<script type="text/javascript" src="https://d3js.org/d3.v4.min.js"></script>
+	<style type="text/css">
+		
+    .hius{
+
+      padding-top: 50px;
+
+
+    }
+
+    
+
+	</style>
+</head>
+<body>
+
+<div class="wrapper">
+    <div class="sidebar" data-background-color="white" data-active-color="danger">
+
+    <!--
+		Tip 1: you can change the color of the sidebar's background using: data-background-color="white | black"
+		Tip 2: you can change the color of the active button using the data-active-color="primary | info | success | warning | danger"
+	-->
+
+    	<div class="sidebar-wrapper">
+            <div class="logo">
+                <a href="#" class="simple-text">
+                    Air Pollution Analysis
+                </a>
+            </div>
+
+            <ul class="nav">
+                <li class="active">
+                    <a href="dashboard.html">
+                        <i class="ti-bar-chart-alt"></i>
+                        <p>Overall AQI</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="user.html">
+                        <i class="ti-location-pin"></i>
+                        <p>Technopark Front Gate</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="table.html">
+                        <i class="ti-location-pin"></i>
+                        <p>Thejaswini</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="typography.html">
+                        <i class="ti-location-pin"></i>
+                        <p>Technopark Back Gate</p>
+                    </a>
+                </li>
+                
+            </ul>
+    	</div>
+    </div>
+
+    <div class="main-panel">
+        
+
+        <div class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="card">
+                            <div class="content">
+                                <div class="row">
+                                    <div class="col-xs-5">
+                                        <div class="icon-big icon-warning text-center">
+                                            <i class="ti-info-alt"></i>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-7">
+                                        <div class="numbers">
+                                        	<p><b>PM</b></p>
+                                            <p>PM 10 - 25%</p>
+                                            <p>PM 2.5 - 15%</p>
+                                               
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="footer">
+                                    <hr />
+                                    <div class="stats">
+                                        <i class="ti-reload"></i> Updated now
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="card">
+                            <div class="content">
+                                <div class="row">
+                                    <div class="col-xs-5">
+                                        <div class="icon-big icon-success text-center">
+                                            <i class="ti-info-alt"></i>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-7">
+                                        <div class="numbers">
+                                           <p><b>Gases</b></p>
+                                            <p>CO- 25%</p>
+                                            <p>Ozone - 15%</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="footer">
+                                    <hr />
+                                    <div class="stats">
+                                        <i class="ti-calendar"></i> Updated now
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="card">
+                            <div class="content">
+                                <div class="row">
+                                    <div class="col-xs-5">
+                                        <div class="icon-big icon-danger text-center">
+                                            <i class="ti-info-alt"></i>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-7">
+                                        <div class="numbers">
+                                           <b> <p>Temperature</p></b>
+                                            35°C
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="footer">
+                                    <hr />
+                                    <div class="stats">
+                                        <i class="ti-timer"></i> In the last hour
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="card">
+                            <div class="content">
+                                <div class="row">
+                                    <div class="col-xs-5">
+                                        <div class="icon-big icon-info text-center">
+                                            <i class="ti-info-alt"></i>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-7">
+                                        <div class="numbers">
+                                            <p>Humidity</p>
+                                            76%
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="footer">
+                                    <hr />
+                                    <div class="stats">
+                                        <i class="ti-reload"></i> Updated now
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+                  <div class="row">
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="header">
+                               <h4 class="title"> <b>Overall Air Quality Index</b></h4>
+
+                              <div id="test" align="center">
+
+
+
+                        </div>
+
+                            </div>
+                            <div class="content">
+                               
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card ">
+                            <div class="header">
+                                <h4 class="title"><b>AQI Level Chart</b></h4>
+                                <br><br>
+                                <div align="center">
+                                	<img src="/home/akash/Desktop/air_pollution2/aqiscale.png">
+                            </div>
+
+                                </div>
+                               <br><br>
+                            
+                        </div>
+                    </div>
+                </div>
+               
+                
+            </div>
+        </div>
+
+
+        
+
+    </div>
+</div>
+<div>
+	
+   
+</div>
+
+</body>
+
+    <!--   Core JS Files   -->
+    <script src="assets/js/jquery-1.10.2.js" type="text/javascript"></script>
+	<script src="assets/js/bootstrap.min.js" type="text/javascript"></script>
+
+	<!--  Checkbox, Radio & Switch Plugins -->
+	<script src="assets/js/bootstrap-checkbox-radio.js"></script>
+
+	<!--  Charts Plugin -->
+	<script src="assets/js/chartist.min.js"></script>
+
+    <!--  Notifications Plugin    -->
+    <script src="assets/js/bootstrap-notify.js"></script>
+
+    <!--  Google Maps Plugin    -->
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>
+
+    <!-- Paper Dashboard Core javascript and methods for Demo purpose -->
+	<script src="assets/js/paper-dashboard.js"></script>
+
+	<!-- Paper Dashboard DEMO methods, don't include it in your project! -->
+	<script src="assets/js/demo.js"></script>
+
+	<script type="text/javascript">
+    	$(document).ready(function(){
+
+        	demo.initChartist();
+
+        	//$.notify({
+            	//icon: 'ti-gift',
+            	//message: "Welcome to <b>Paper Dashboard</b> - a beautiful Bootstrap freebie for your next project."
+
+            },{
+                type: 'success',
+                timer: 4000
+            });
+
+    	});
+	</script>
+<script type="text/javascript">
+
+   /*     dataset = {
+            "children": [{"Name":"Olives","Count":4319},
+                {"Name":"Tea","Count":4159},
+                {"Name":"Mashed Potatoes","Count":2583},
+                {"Name":"Boiled Potatoes","Count":2074},
+                {"Name":"Milk","Count":1894},
+                {"Name":"Chicken Salad","Count":1809},
+                {"Name":"Vanilla Ice Cream","Count":1713},
+                {"Name":"Cocoa","Count":1636},
+                {"Name":"Lettuce Salad","Count":1566},
+                {"Name":"Lobster Salad","Count":1511},
+                {"Name":"Chocolate","Count":1489},
+                {"Name":"Apple Pie","Count":1487},
+                {"Name":"Orange Juice","Count":1423},
+                {"Name":"American Cheese","Count":1372},
+                {"Name":"Green Peas","Count":1341},
+                {"Name":"Assorted Cakes","Count":1331},
+                {"Name":"French Fried Potatoes","Count":1328},
+                {"Name":"Potato Salad","Count":1306},
+                {"Name":"Baked Potatoes","Count":1293},
+                {"Name":"Roquefort","Count":1273},
+                {"Name":"Stewed Prunes","Count":1268}]
+        };
+	*/	
+	
+/*	var xhReq = new XMLHttpRequest();
+	xhReq.open("GET","http://23.254.253.63/FlaskApp/air_data", false);
+	xhReq.send(null);
+	var resp = JSON.parse(xhReq.responseText);        */
+	
+		kaka = {
+			"obj":[{"dev_id": "airin", "temp": 49, "pm10": 100, "hum": 150, "time": "09:38:42", "date": "2018-07-18", "pm25": 156, "ozone":190, "CO":300, "SO":140, "NO":60} ]
+		};
+		
+		var text = '{ "children" : [' +
+	'{ "pollutant":"John" , "value":20 },' +
+	'{ "pollutant":"Anna" , "value":30 },' +
+	'{ "pollutant":"Anna" , "value":30 },' +
+	'{ "pollutant":"John" , "value":20 },' +
+	'{ "pollutant":"Anna" , "value":30 },' +
+	'{ "pollutant":"Anna" , "value":30 },' +
+	'{ "pollutant":"Anna" , "value":30 },' +
+	'{ "pollutant":"Anna" , "value":30 },' +
+	'{ "pollutant":"Peter" , "value":50 } ]}';
+	
+	var dataset = JSON.parse(text);
+			console.log(kaka.obj[0]);
+	dataset.children[0].pollutant="SO";
+	dataset.children[0].value=kaka.obj[0].SO;
+	dataset.children[1].pollutant="PM10";
+	dataset.children[1].value=kaka.obj[0].pm10;
+	dataset.children[2].pollutant="NO";
+	dataset.children[2].value=kaka.obj[0].NO;
+	dataset.children[3].pollutant="PM25";
+	dataset.children[3].value=kaka.obj[0].pm25;
+	dataset.children[4].pollutant="Ozone";
+	dataset.children[4].value=kaka.obj[0].ozone;
+	dataset.children[5].pollutant="CO";
+	dataset.children[5].value=kaka.obj[0].CO;
+	dataset.children[6].pollutant="TEMP";
+	dataset.children[6].value=kaka.obj[0].temp
+	dataset.children[7].pollutant="HUM";
+	dataset.children[7].value=kaka.obj[0].hum;
+	//console.log(max([dataset.children[0].temp,dataset.children[0].hum,dataset.children[0].pm10,dataset.children[0].pm25]));
+	console.log(dataset.children[0].value);
+
+
+
+    var i;
+    
+    // Initialize maximum element
+    var max = dataset.children[0].value;
+ 
+    // Traverse array elements from second and
+    // compare every element with current max  
+    for (i = 0; i < 6; i++)
+        if (dataset.children[i].value > max)
+            max = dataset.children[i].value;
+ 	
+	dataset.children[8].pollutant="AQI";
+	dataset.children[8].value=max;
+    
+	
+
+
+
+	
+		console.log(dataset.children);
+        var diameter = 350;
+		
+		
+  var color = d3.scaleOrdinal(d3.schemeCategory20);
+  var colorCodes = ["#00FF00", "#FFFF00", "#FFA500", "#FF0000", "#FF00FF"];
+
+  var colors = d3.scaleQuantile()
+    //quantize scale divides domain in bands according to ordinal scale range
+    .domain([1, 251])
+    //.domain(d3.ticks(1,251,5))
+    .range(colorCodes);
+
+  var colorQuantiles = colors.quantiles();
+  colorQuantiles.unshift(0);
+   
+		
+
+        var bubble = d3.pack(dataset)
+            .size([diameter, diameter])
+            .padding(1.5);
+
+        var svg = d3.select("body div#test")
+            .append("svg")
+            .attr("width", diameter)
+            .attr("height", diameter)
+            .attr("class", "bubble");
+
+        var nodes = d3.hierarchy(dataset)
+            .sum(function(d) { return d.value; });
+
+        var node = svg.selectAll(".node")
+            .data(bubble(nodes).descendants())
+            .enter()
+            .filter(function(d){
+                return  !d.children
+            })
+            .append("g")
+            .attr("class", "node")
+            .attr("transform", function(d) {
+                return "translate(" + d.x + "," + d.y + ")";
+            });
+
+        node.append("title")
+            .text(function(d) {
+                return d.Name + ": " + d.value;
+            });
+
+        node.append("circle")
+            .attr("r", function(d) {
+                return d.r;
+            })
+
+           	.style("fill", function(d,i) { 
+	/*		if(d.data.pollutant == "AQI"&& d.data.value <= 50)
+				return 'green';
+			if(d.data.pollutant == "AQI"&& d.data.value >50 && d.data.value <=100)
+				return 'yellow';
+			if(d.data.pollutant == "AQI"&& d.data.value >100 && d.data.value <=150)
+				return 'orange';
+			if(d.data.pollutant == "AQI"&& d.data.value >150 && d.data.value <=200)
+				return 'red';
+			if(d.data.pollutant == "AQI"&& d.data.value >200 && d.data.value <=300)
+				return 'purple';			
+       console.log(i);   
+	 */ 	
+           return colors(d.data.value);
+	    });
+
+        node.append("text")
+            .attr("dy", ".2em")
+            .style("text-anchor", "middle")
+            .text(function(d) {
+                return d.data.pollutant.substring(0, d.r / 3);           //string
+            })
+            .attr("font-family", "sans-serif")
+            .attr("font-size", function(d){
+                return d.r/5;
+            })
+            .attr("fill", "black");
+
+        node.append("text")
+            .attr("dy", "1.3em")
+            .style("text-anchor", "middle")
+            .text(function(d) {
+                return d.data.value;									//variable
+            })
+            .attr("font-family",  "Gill Sans", "Gill Sans MT")
+            .attr("font-size", function(d){
+                return d.r/5;
+            })
+            .attr("fill", "black");
+
+        d3.select(self.frameElement)
+            .style("height", diameter + "px");
+
+
+
+	</script>
+
+	
+</html>

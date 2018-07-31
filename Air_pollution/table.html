@@ -1,0 +1,632 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<link rel="apple-touch-icon" sizes="76x76" href="assets/img/apple-icon.png">
+	<link rel="icon" type="image/png" sizes="96x96" href="assets/img/favicon.png">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+	<title>Air Pollution Analysis</title>
+
+	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+    <meta name="viewport" content="width=device-width" />
+
+
+    <!-- Bootstrap core CSS     -->
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Animation library for notifications   -->
+    <link href="assets/css/animate.min.css" rel="stylesheet"/>
+
+    <!--  Paper Dashboard core CSS    -->
+    <link href="assets/css/paper-dashboard.css" rel="stylesheet"/>
+
+    <!--  CSS for Demo Purpose, don't include it in your project     -->
+    <link href="assets/css/demo.css" rel="stylesheet" />
+   <meta http-equiv="refresh" content="10">
+    <!--  Fonts and icons     -->
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet' type='text/css'>
+    <link href="assets/css/themify-icons.css" rel="stylesheet">
+<script type="text/javascript" src="https://d3js.org/d3.v4.min.js"></script>
+<style type="text/css">
+    <style type="text/css">
+        .sample{
+
+            margin-top: -620px;
+        }
+
+         .graph{
+
+         margin-right: 550px;
+
+            margin-left: -120px;
+            margin-top: -95px;
+     }
+     table.center {
+            margin-left:auto; 
+            margin-right:auto;
+        }
+        
+        .text{
+            text-decoration-color: steelblue;
+        }
+
+        .bar{
+            fill: #4897dc;
+        }
+ 
+        .bar:hover{
+            fill: #66ff66;
+        }
+ 
+        .axis {
+            font: 10px sans-serif;
+        }
+ 
+        .axis path,
+        .axis line {
+            fill: none;
+            stroke: #000;
+            shape-rendering: crispEdges;
+        }
+        
+        .line {
+            fill: none;
+            stroke: steelblue;
+            stroke-width: 2px;
+        }
+
+        .line2{
+            fill :none;
+            stroke:green;
+            stroke-width: 2px;
+        }
+
+        .line3{
+            fill :none;
+            stroke:red;
+            stroke-width: 2px;
+        }
+       .line4 {
+            fill: none;
+            stroke:yellow;
+            stroke-width: 2px;
+        }
+
+
+        .dot{
+            opacity: 0.5;
+            fill: #4897dc;
+        }
+
+        .dot1{
+            opacity: 0.5;
+            fill: green;
+        }
+
+        .dot2{
+            opacity: 0.5;
+            fill: red;
+        }
+        .dot3{
+            opacity: 0.5;
+            fill: blue;
+        }
+                .dot4{
+            opacity: 0.5;
+            fill: red;
+        }
+        .colorcode{
+
+            color: olive;
+        }
+        .colorcode1{
+
+            color: lime;
+        }
+        .colorcode2{
+
+            color: pink;
+        }
+        .colorcode3{
+
+            color: maroon;
+        }
+        .colorcode4{
+
+            color: green;
+        }
+
+.hii3{
+
+            margin-left: -175px;
+            margin-top: -95px;
+        }
+
+
+        #loading {
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            position: absolute;
+            display: block;
+            opacity: 1;
+            background-color: #fff;
+            z-index: 99;
+            text-align: center;
+        }
+
+        #loading-image {
+            position: absolute;
+            top: 200px;
+            left: 400px;
+            z-index: 100;
+        }
+
+</style>
+</head>
+<body>
+
+<div class="wrapper">
+	<div class="sidebar" data-background-color="white" data-active-color="danger">
+
+    <!--
+		Tip 1: you can change the color of the sidebar's background using: data-background-color="white | black"
+		Tip 2: you can change the color of the active button using the data-active-color="primary | info | success | warning | danger"
+	-->
+
+    	<div class="sidebar-wrapper">
+            <div class="logo">
+                <a href="#" class="simple-text">
+                    Air Pollution Analysis
+                </a>
+            </div>
+
+            <ul class="nav">
+                <li>
+                    <a href="dashboard.html">
+                        <i class="ti-bar-chart-alt"></i>
+                        <p>Overall AQI</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="user.html">
+                        <i class="ti-location-pin"></i>
+                        <p>Technopark Front Gate</p>
+                    </a>
+                </li>
+                <li class="active">
+                    <a href="table.html">
+                        <i class="ti-location-pin"></i>
+                        <p>Thejaswini</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="typography.html">
+                        <i class="ti-location-pin"></i>
+                        <p>Technopark Back Gate</p>
+                    </a>
+                </li>
+                
+            </ul>
+    	</div>
+    </div>
+
+    <div class="main-panel">
+		<nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar bar1"></span>
+                        <span class="icon-bar bar2"></span>
+                        <span class="icon-bar bar3"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">Air Qulaity Analysis at Thejaswini</a>
+                </div>
+                <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                       
+                    </ul>
+
+                </div>
+            </div>
+        </nav>
+
+
+        <div class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="header">
+                                <h4 class="title"><b>Air Qulaity Analysis</b></h4>
+                                <p class="category">Thejaswini Building</p>
+                            </div>
+                             <div class="sample1">
+
+                            <div id="test1" class="graph"></div>
+                            <div class="footer">
+                               
+
+                                    <div class="chart-legend ">
+                                        
+                                        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<i class="fa fa-circle text-danger"></i> PM 2.5
+                                        <i class="fa fa-circle text-warning"></i> PM 10
+                                        <i class="fa fa-circle text-info"></i> Humidity
+                                       <i class="fa fa-circle colorcode4"></i>Temperature
+
+                                    </div> 
+                                </div>
+                                    <hr>
+                                    
+                                </div>
+                    </div>
+
+
+                   
+
+                </div>
+            </div>
+        </div>
+<div class="col-md-6">
+                        <div class="card ">
+                            <div class="header">
+                                <h4 class="title"><b>PM 10 Analysis</b></h4>
+                                <br><br>
+                                <div align="center" id="parti1" class="hii3">
+                                    
+                            </div>
+                            <div class="footer">
+                                    <div class="chart-legend">
+                                        
+                                        <i class="fa fa-circle text-warning"></i> PM 10
+                                        
+
+                                    </div>
+                                    <hr>
+                                    
+                                </div>
+
+                                </div>
+                               <br><br>
+                            
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="card ">
+                            <div class="header">
+                                <h4 class="title"><b>PM 2.5 Analysis</b></h4>
+                                <br><br>
+                                <div align="center" id="diver" class="hii3">
+                                    
+                            </div>
+                            <div class="footer">
+                                    <div class="chart-legend">
+                                        
+                                        <i class="fa fa-circle text-danger"></i> PM 2.5
+                                        
+
+                                    </div>
+                                    <hr>
+                                    
+                                </div>
+
+                                </div>
+                               <br><br>
+                            
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="card ">
+                            <div class="header">
+                                <h4 class="title"><b>Temperature Analysis</b></h4>
+                                <br><br>
+                                <div align="center" id="tempdy" class="hii3">
+                                    
+                            </div>
+                            <div class="footer">
+                                    <div class="chart-legend">
+                                        
+                                        <i class="fa fa-circle colorcode4"></i> Temperature
+                                        
+
+                                    </div>
+                                    <hr>
+                                    
+                                </div>
+
+                                </div>
+                               <br><br>
+                            
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="card ">
+                            <div class="header">
+                                <h4 class="title"><b>Humidity Analysis</b></h4>
+                                <br><br>
+                                <div align="center" id="humdy" class="hii3">
+                                    
+                            </div>
+                            <div class="footer">
+                                    <div class="chart-legend">
+                                        
+                                        <i class="fa fa-circle text-info"></i> Humidity
+                                        
+
+                                    </div>
+                                    <hr>
+                                    
+                                </div>
+
+                                </div>
+                               <br><br>
+                            
+                        </div>
+                    </div>
+        
+
+
+    </div>
+</div>
+<div id="loading">
+        <img id="loading-image" src="preloader.gif" alt="Loading..." />
+        <script>
+            window.onload = function(){ document.getElementById("loading").style.display = "none" }   
+        </script>
+    </div>
+
+</body>
+
+    <!--   Core JS Files   -->
+    <script src="assets/js/jquery-1.10.2.js" type="text/javascript"></script>
+	<script src="assets/js/bootstrap.min.js" type="text/javascript"></script>
+
+	<!--  Checkbox, Radio & Switch Plugins -->
+	<script src="assets/js/bootstrap-checkbox-radio.js"></script>
+
+	<!--  Charts Plugin -->
+	<script src="assets/js/chartist.min.js"></script>
+
+    <!--  Notifications Plugin    -->
+    <script src="assets/js/bootstrap-notify.js"></script>
+
+    <!--  Google Maps Plugin    -->
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>
+
+    <!-- Paper Dashboard Core javascript and methods for Demo purpose -->
+	<script src="assets/js/paper-dashboard.js"></script>
+
+	<!-- Paper Dashboard DEMO methods, don't include it in your project! -->
+	<script src="assets/js/demo.js"></script>
+
+ 
+    <script type="text/javascript">
+        var margin = {top: 120, right: 20, bottom: 30, left: 230},
+      width = 1000;// - margin.left - margin.right,
+      height = 400;// - margin.top - margin.bottom;
+
+  var div = d3.select("body").append("div") 
+        .attr("class", "tooltip")               
+        .style("opacity", 0);
+  
+  // parse the date / time
+  var parseTime = d3.timeParse("%H:%M:%S");
+  
+  // set the ranges
+  var x = d3.scaleTime().range([0, width]);
+  var y = d3.scaleLinear().range([height, 0]);
+  
+  // define the line
+  var valueline = d3.line()
+      .x(function(d) { return x(d.Date); })
+      .y(function(d) { return y(d.hum); });
+  // define the line
+  var valueline2 = d3.line()
+      .x(function(d) { return x(d.Date); })
+      .y(function(d) { return y(d.temp); });
+  // define the line
+  var valueline3 = d3.line()
+      .x(function(d) { return x(d.Date); })
+      .y(function(d) { return y(d.pm25); });
+   // define the line
+  var valueline4 = d3.line()
+      .x(function(d) { return x(d.Date); })
+      .y(function(d) { return y(d.pm10); });
+  
+    
+  // append the svg obgect to the body of the page
+  // appends a 'group' element to 'svg'
+  // moves the 'group' element to the top left margin
+  var svg2 = d3.select("body div#test1").append("svg")
+      .attr("width", 1000)
+      .attr("height", 350)
+    .append("g")
+      .attr("transform","translate(" + margin.left + "," + margin.top + ")");
+  
+  function draw2(data) {
+    
+    var data = data;
+    
+    // format the data
+    data.forEach(function(d) {
+        d.Date = parseTime(d.time);
+        d.hum = +d.hum;
+        d.temp = +d.temp;
+        d.pm25 = +d.pm25;
+        d.pm10 = +d.pm10;
+    });
+    
+    // sort years ascending
+    /*data.sort(function(a, b){
+      return a["Date"]-b["Date"];
+    })*/
+   
+    // Scale the range of the data
+    x.domain(d3.extent(data, function(d) { return d.Date; }));
+    y.domain([0, d3.max(data, function(d) {
+      return Math.max(d.hum, d.temp, d.pm25, d.pm10); })]);
+
+           svg2.append("text")      
+        .attr("x", 210)
+        .attr("y",  230)
+        .style("text-anchor", "middle")
+        .text("Time");
+    // text label for the y axis
+       svg2.append("text")     
+        .attr("y", 100)
+        .attr("x",  -45)
+        .style("text-anchor", "middle")
+        .text("Value"); 
+    
+    // Add the valueline path.
+    svg2.append("path")
+        .data([data])
+        .attr("class", "line")
+        .attr("d", valueline);
+    // Add the valueline path.
+    svg2.append("path")
+        .data([data])
+        .attr("class", "line2")
+        .attr("d", valueline2);  
+    // Add the valueline path.
+    svg2.append("path")
+        .data([data])
+        .attr("class", "line3")
+        .attr("d", valueline3); 
+    svg2.append("path")
+        .data([data])
+        .attr("class", "line4")
+        .attr("d", valueline4); 
+    // Add the X Axis
+    svg2.append("g")
+        .attr("transform", "translate(0," + height + ")")
+        .call(d3.axisBottom(x));
+  
+    // Add the Y Axis
+    svg2.append("g")
+        .call(d3.axisLeft(y));
+  
+    svg2.selectAll("dot").data(data)
+    .enter()
+    .append("circle")
+    .attr("r",5)
+    .attr("cx",function(d){return x(d.Date)})
+    .attr("cy",function(d){return y(d.hum);})
+    .attr("class","dot")
+    .on("mouseover", function(d) {      
+        div.transition()        
+            .duration(200)      
+            .style("opacity", 1000);        
+        div.html("<b>hum</b>:" +d.hum + "<br/>" +"<b>Time</b>:"+d.time) 
+            .style("left", (d3.event.pageX) + "px")     
+            .style("top", (d3.event.pageY - 28) + "px");    
+    })                  
+    .on("mouseout", function(d) {       
+        div.transition()        
+            .duration(1000)     
+            .style("opacity", 0);   
+    });
+  
+    svg2.selectAll("dot").data(data)
+    .enter()
+    .append("circle")
+    .attr("r",5)
+    .attr("cx",function(d){return x(d.Date)})
+    .attr("cy",function(d){return y(d.temp);})
+    .attr("class","dot1")
+    .on("mouseover", function(d) {      
+        div.transition()        
+            .duration(200)      
+            .style("opacity", 1000);        
+        div.html("<b>temp</b>:" +d.temp + "<br/>" +"<b>Time</b>:"+d.time)   
+            .style("left", (d3.event.pageX) + "px")     
+            .style("top", (d3.event.pageY - 28) + "px");    
+    })                  
+    .on("mouseout", function(d) {       
+        div.transition()        
+            .duration(1000)     
+            .style("opacity", 0);   
+    });
+  
+    svg2.selectAll("dot").data(data)
+    .enter()
+    .append("circle")
+    .attr("r",5)
+    .attr("cx",function(d){return x(d.Date)})
+    .attr("cy",function(d){return y(d.pm25);})
+    .attr("class","dot3")
+    .on("mouseover", function(d) {      
+        div.transition()        
+            .duration(200)      
+            .style("opacity", 1000);        
+        div.html("<b>pm25</b>:" +d.pm25 + "<br/>" +"<b>Time</b>:"+d.time)   
+            .style("left", (d3.event.pageX) + "px")     
+            .style("top", (d3.event.pageY - 28) + "px");    
+    })                  
+    .on("mouseout", function(d) {       
+        div.transition()        
+            .duration(1000)     
+            .style("opacity", 0);   
+    });
+ svg2.selectAll("dot").data(data)
+    .enter()
+    .append("circle")
+    .attr("r",5)
+    .attr("cx",function(d){return x(d.Date)})
+    .attr("cy",function(d){return y(d.pm10);})
+    .attr("class","dot4")
+    .on("mouseover", function(d) {      
+        div.transition()        
+            .duration(200)      
+            .style("opacity", 1000);        
+        div.html("<b>pm10</b>:" +d.pm10 + "<br/>" +"<b>Time</b>:"+d.time)   
+            .style("left", (d3.event.pageX) + "px")     
+            .style("top", (d3.event.pageY - 28) + "px");    
+    })                  
+    .on("mouseout", function(d) {       
+        div.transition()        
+            .duration(1000)     
+            .style("opacity", 0);   
+    });
+  }
+  
+  // Get the data
+  d3.json("http://23.254.253.63/FlaskApp/air_data", function(error, data) {
+    if (error) throw error;
+    
+    // trigger render
+    draw2(data);
+    
+    
+  });
+
+
+
+
+    </script> 
+
+
+
+
+
+
+      <script src="assets/js/pm10dynam.js">
+      </script>
+
+      
+
+      <script src="assets/js/pm25dynamic.js"></script>
+      <script src="assets/js/tempdynam.js"></script>
+
+      <script src="assets/js/humdynam.js"></script>
+
+
+
+</html>

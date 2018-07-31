@@ -1,0 +1,3113 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<link rel="apple-touch-icon" sizes="76x76" href="assets/img/apple-icon.png">
+	<link rel="icon" type="image/png" sizes="96x96" href="assets/img/favicon.png">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+	<title>Air Pollution Analysis | ICFOSS</title>
+
+	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+    <meta name="viewport" content="width=device-width" />
+
+
+    <!-- Bootstrap core CSS     -->
+    <link href="assets/css/bootstrap1.min.css" rel="stylesheet" />
+
+    <!-- Animation library for notifications   -->
+    <link href="assets/css/animate.min.css" rel="stylesheet"/>
+
+    <!--  Paper Dashboard core CSS    -->
+    <link href="assets/css/paper-dashboard.css" rel="stylesheet"/>
+
+    <!--  CSS for Demo Purpose, don't include it in your project     -->
+    <link href="assets/css/demo.css" rel="stylesheet" />
+
+    <!--  Fonts and icons     -->
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet' type='text/css'>
+    <link href="assets/css/themify-icons.css" rel="stylesheet">
+     <script type="text/javascript" src="https://d3js.org/d3.v4.min.js"></script>
+
+        <style>
+ .body{
+            background-color: #DEB887;
+        }
+
+        table.center {
+            margin-left:auto; 
+            margin-right:auto;
+        }
+        
+        .text{
+            text-decoration-color: steelblue;
+        }
+
+        .bar{
+            fill: #4897dc;
+        }
+ 
+        .bar:hover{
+            fill: #66ff66;
+        }
+ 
+        .axis {
+            font: 10px sans-serif;
+        }
+ 
+        .axis path,
+        .axis line {
+            fill: none;
+            stroke: #000;
+            shape-rendering: crispEdges;
+        }
+        
+        .line {
+            fill: none;
+            stroke: steelblue;
+            stroke-width: 2px;
+        }
+
+        .line2{
+            fill :none;
+            stroke:green;
+            stroke-width: 2px;
+        }
+
+        .line3{
+            fill :none;
+            stroke:red;
+            stroke-width: 2px;
+        }
+       .line4 {
+            fill: none;
+            stroke:yellow;
+            stroke-width: 2px;
+        }
+        .line5 {
+            fill: none;
+            stroke: lime;
+            stroke-width: 2px;
+        }
+
+        .line6{
+            fill :none;
+            stroke:olive;
+            stroke-width: 2px;
+        }
+
+        .line7{
+            fill :none;
+            stroke:maroon;
+            stroke-width: 2px;
+        }
+       .line8 {
+            fill: none;
+            stroke:hotpink;
+            stroke-width: 2px;
+        }
+
+
+        .dot{
+            opacity: 0.5;
+            fill: orange;
+        }
+
+        .dot1{
+            opacity: 0.5;
+            fill: green;
+        }
+
+        .dot2{
+            opacity: 0.5;
+            fill: red;
+        }
+        .dot3{
+            opacity: 0.5;
+            fill: blue;
+        }
+        .dot4{
+            opacity: 0.5;
+            fill: violet;
+        }
+
+        .dot5{
+            opacity: 0.5;
+            fill: gold;
+        }
+
+        .dot6{
+            opacity: 0.5;
+            fill: aqua;
+        }
+        .dot7{
+            opacity: 0.5;
+            fill: magenta;
+        }
+
+        .hii{
+
+            margin-left: -150px;
+            margin-top: -80px;
+        }
+        .colorcode{
+
+            color: olive;
+        }
+        .colorcode1{
+
+            color: lime;
+        }
+        .colorcode2{
+
+            color: pink;
+        }
+        .colorcode3{
+
+            color: maroon;
+        }
+        .colorcode4{
+
+            color: green;
+        }
+
+         .hii2{
+
+            margin-left: -190px;
+            margin-top: -95px;
+        }
+
+.hii3{
+
+            margin-left: -175px;
+            margin-top: -95px;
+        }
+
+    </style>
+
+</head>
+<body>
+
+<div class="wrapper">
+	<div class="sidebar" data-background-color="white" data-active-color="danger">
+
+    <!--
+		Tip 1: you can change the color of the sidebar's background using: data-background-color="white | black"
+		Tip 2: you can change the color of the active button using the data-active-color="primary | info | success | warning | danger"
+	-->
+
+    	<div class="sidebar-wrapper">
+            <div class="logo">
+                <a href="#" class="simple-text">
+                    Air Pollution Analysis
+                </a>
+            </div>
+
+            <ul class="nav">
+                <li>
+                    <a href="dashboard.html">
+                        <i class="ti-bar-chart-alt"></i>
+                        <p>Overall AQI</p>
+                    </a>
+                </li>
+                <li class="active">
+                    <a href="user.html">
+                        <i class="ti-location-pin"></i>
+                        <p>Technopark Front Gate</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="table.html">
+                        <i class="ti-location-pin"></i>
+                        <p>Thejaswini</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="typography.html">
+                        <i class="ti-location-pin"></i>
+                        <p>Technopark Back Gate</p>
+                    </a>
+                </li>
+                
+			            </ul>
+    	</div>
+    </div>
+
+    <div class="main-panel">
+		<nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar bar1"></span>
+                        <span class="icon-bar bar2"></span>
+                        <span class="icon-bar bar3"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">Air Qulaity Analysis at Technopark Front Gate</a>
+                </div>
+                
+            </div>
+        </nav>
+
+
+        <div class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-4 col-md-5">
+                        
+                        </div>
+                    </div>
+                    <div class="col-lg-8 col-md-7">
+                        <div class="card">
+                         <div class="header">
+                                <h4 class="title"><b>Air Qulaity Analysis</b></h4>
+                                <p class="category">Technopark Front Gate</p>
+                            </div>
+                            <div class="content">
+                                <div id="parti1" class="hii"></div>
+                              
+                                <div class="footer">
+                                    <div class="chart-legend">
+                                        <i class="fa fa-circle text-info"></i> Humidity
+                                        <i class="fa fa-circle text-danger"></i> PM 2.5
+                                        <i class="fa fa-circle text-warning"></i> PM 10
+                                        <i class="fa fa-circle colorcode"></i>CO
+                                         <i class="fa fa-circle colorcode1"></i>Ozone
+                                          <i class="fa fa-circle colorcode2"></i>NO
+                                           <i class="fa fa-circle colorcode3"></i>SO
+                                            <i class="fa fa-circle colorcode4"></i>Temperature
+
+                                    </div>
+                                    <hr>
+                                    
+                                </div>
+                            </div> 
+                    </div>
+
+
+                </div>
+                <div class="col-md-6">
+                        <div class="card ">
+                            <div class="header">
+                                <h4 class="title"><b>PM 10 Analysis</b></h4>
+                                <br><br>
+                                <div align="center" id="pm1" class="hii2">
+                                    
+                            </div>
+                            <div class="footer">
+                                    <div class="chart-legend">
+                                        
+                                        <i class="fa fa-circle text-warning"></i> PM 10
+                                        
+
+                                    </div>
+                                    <hr>
+                                    
+                                </div>
+
+                                </div>
+                               <br><br>
+                            
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="card ">
+                            <div class="header">
+                                <h4 class="title"><b>PM 2.5 Analysis</b></h4>
+                                <br><br>
+                                <div align="center" id="tyu" class="hii2">
+                                    
+                            </div>
+                             <div class="footer">
+                                    <div class="chart-legend">
+                                        
+                                        <i class="fa fa-circle text-danger"></i> PM 2.5
+                                        
+
+                                    </div>
+                                    <hr>
+                                    
+                                </div>
+
+                                </div>
+                               <br><br>
+                            
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card ">
+                            <div class="header">
+                                <h4 class="title"><b>CO Analysis</b></h4>
+                                <br><br>
+                                <div align="center" id="qwe" class="hii3">
+                                    
+
+                                </div>
+                                <div class="footer">
+                                    <div class="chart-legend">
+                                        
+                                      <i class="fa fa-circle colorcode"></i>CO
+                                        
+
+                                    </div>
+                                    <hr>
+                                    
+                                </div>
+                               <br><br>
+                            
+                        </div>
+                    </div>
+                    
+                   </div>
+                   <div class="col-md-6">
+                        <div class="card ">
+                            <div class="header">
+                                <h4 class="title"><b>NO Analysis</b></h4>
+                                <br><br>
+                                <div align="center" id="nitro" class="hii3">
+                                    
+
+                                </div>
+                                <div class="footer">
+                                    <div class="chart-legend">
+                                        
+                                      <i class="fa fa-circle colorcode2"></i>NO
+                                        
+
+                                    </div>
+                                    <hr>
+                                    
+                                </div>
+
+                                </div>
+                               <br><br>
+                            
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card ">
+                            <div class="header">
+                                <h4 class="title"><b>SO Analysis</b></h4>
+                                <br><br>
+                                <div align="center" id="poli" class="hii3">
+                                   
+                            </div>
+                            <div class="footer">
+                                    <div class="chart-legend">
+                                        
+                                      <i class="fa fa-circle colorcode3"></i>SO
+                                        
+
+                                    </div>
+                                    <hr>
+                                    
+                                </div>
+
+                                </div>
+                               <br><br>
+                            
+                        </div>
+                    </div>
+
+                  <div class="col-md-6">
+                        <div class="card ">
+                            <div class="header">
+                                <h4 class="title"><b>Ozone Analysis</b></h4>
+                                <br><br>
+                                <div align="center" id="pios" class="hii3">
+                                    
+                            </div>
+                            <div class="footer">
+                                    <div class="chart-legend">
+                                        
+                                      <i class="fa fa-circle colorcode1"></i>Ozone
+                                        
+
+                                    </div>
+                                    <hr>
+                                    
+                                </div>
+
+                                </div>
+                               <br><br>
+                            
+                        </div>
+                    </div>  
+                     <div class="col-md-6">
+                        <div class="card ">
+                            <div class="header">
+                                <h4 class="title"><b>Temperature Analysis</b></h4>
+                                <br><br>
+                                <div align="center" id="polk" class="hii3">
+                                    
+                            </div>
+                            <div class="footer">
+                                    <div class="chart-legend">
+                                        
+                                      <i class="fa fa-circle colorcode4"></i>Temperature
+                                        
+
+                                    </div>
+                                    <hr>
+                                    
+                                </div>
+
+                                </div>
+                               <br><br>
+                            
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card ">
+                            <div class="header">
+                                <h4 class="title"><b>Humidity Analysis</b></h4>
+                                <br><br>
+                                <div align="center" id="lock" class="hii3">
+                                    
+                            </div>
+                            <div class="footer">
+                                    <div class="chart-legend">
+                                        
+                                      <i class="fa fa-circle text-info"></i>Humidity
+                                        
+
+                                    </div>
+                                    <hr>
+                                    
+                                </div>
+
+                                </div>
+                               <br><br>
+                            
+                        </div>
+                    </div>        
+
+        </div>
+
+
+        
+
+    </div>
+</div>
+
+
+</body>
+
+    <!--   Core JS Files   -->
+    <script src="assets/js/jquery-1.10.2.js" type="text/javascript"></script>
+	<script src="assets/js/bootstrap.min.js" type="text/javascript"></script>
+
+	<!--  Checkbox, Radio & Switch Plugins -->
+	<script src="assets/js/bootstrap-checkbox-radio.js"></script>
+
+	<!--  Charts Plugin -->
+	<script src="assets/js/chartist.min.js"></script>
+
+    <!--  Notifications Plugin    -->
+    <script src="assets/js/bootstrap-notify.js"></script>
+
+    <!--  Google Maps Plugin    -->
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>
+
+    <!-- Paper Dashboard Core javascript and methods for Demo purpose -->
+	<script src="assets/js/paper-dashboard.js"></script>
+
+	<!-- Paper Dashboard DEMO methods, don't include it in your project! -->
+	<script src="assets/js/demo.js"></script>
+ <script>
+var margin = {top: 100, right: 20, bottom: 30, left: 230},
+      width = 800;// - margin.left - margin.right,
+      height = 350;// - margin.top - margin.bottom;
+
+  var div = d3.select("body").append("div") 
+        .attr("class", "tooltip")               
+        .style("opacity", 0);
+  
+  // parse the date / time
+  var parseTime = d3.timeParse("%H:%M:%S");
+  
+  // set the ranges
+  var x = d3.scaleTime().range([0, width]);
+  var y = d3.scaleLinear().range([height, 0]);
+  
+  // define the line
+  var valueline = d3.line()
+      .x(function(d) { return x(d.Date); })
+      .y(function(d) { return y(d.hum); });
+  // define the line
+  var valueline2 = d3.line()
+      .x(function(d) { return x(d.Date); })
+      .y(function(d) { return y(d.temp); });
+  // define the line
+  var valueline3 = d3.line()
+      .x(function(d) { return x(d.Date); })
+      .y(function(d) { return y(d.pm25); });
+   // define the line
+  var valueline4 = d3.line()
+      .x(function(d) { return x(d.Date); })
+      .y(function(d) { return y(d.pm10); });
+  var valueline5 = d3.line()
+      .x(function(d) { return x(d.Date); })
+      .y(function(d) { return y(d.ozone); });
+  // define the line
+  var valueline6 = d3.line()
+      .x(function(d) { return x(d.Date); })
+      .y(function(d) { return y(d.CO); });
+  // define the line
+  var valueline7 = d3.line()
+      .x(function(d) { return x(d.Date); })
+      .y(function(d) { return y(d.SO); });
+   // define the line
+  var valueline8 = d3.line()
+      .x(function(d) { return x(d.Date); })
+      .y(function(d) { return y(d.NO); });
+  
+    
+  // append the svg obgect to the body of the page
+  // appends a 'group' element to 'svg'
+  // moves the 'group' element to the top left margin
+  var svg = d3.select("body div#parti1").append("svg")
+      .attr("width", width + margin.left + margin.right)
+      .attr("height", height + margin.top + margin.bottom)
+    .append("g")
+      .attr("transform","translate(" + margin.left + "," + margin.top + ")");
+  
+  function draw(data) {
+    
+    var data = data;
+    
+    // format the data
+    data.forEach(function(d) {
+        d.Date = parseTime(d.time);
+        d.hum = +d.hum;
+        d.temp = +d.temp;
+        d.pm25 = +d.pm25;
+        d.pm10 = +d.pm10;
+        d.ozone = +d.ozone;
+        d.CO = +d.CO;
+        d.SO = +d.SO;
+        d.NO = +d.NO;
+    });
+    
+    // sort years ascending
+    /*data.sort(function(a, b){
+      return a["Date"]-b["Date"];
+    })*/
+   
+    // Scale the range of the data
+    x.domain(d3.extent(data, function(d) { return d.Date; }));
+    y.domain([0, d3.max(data, function(d) {
+      return Math.max(d.hum, d.temp, d.pm25, d.pm10, d.ozone, d.CO, d.SO, d.NO); })]);
+      
+        // text label for the x axis
+       svg.append("text")      
+        .attr("x", 400)
+        .attr("y", 380)
+        .style("text-anchor", "middle")
+        .text("Time");
+    // text label for the y axis
+       svg.append("text")     
+        .attr("y", 0)
+        .attr("x",  -30)
+        .style("text-anchor", "middle")
+        .text("Value");
+    
+    // Add the valueline path.
+    svg.append("path")
+        .data([data])
+        .attr("class", "line")
+        .attr("d", valueline);
+    // Add the valueline path.
+    svg.append("path")
+        .data([data])
+        .attr("class", "line2")
+        .attr("d", valueline2);  
+    // Add the valueline path.
+    svg.append("path")
+        .data([data])
+        .attr("class", "line3")
+        .attr("d", valueline3); 
+    svg.append("path")
+        .data([data])
+        .attr("class", "line4")
+        .attr("d", valueline4); 
+          // Add the valueline path.
+    svg.append("path")
+        .data([data])
+        .attr("class", "line5")
+        .attr("d", valueline5);
+    // Add the valueline path.
+    svg.append("path")
+        .data([data])
+        .attr("class", "line6")
+        .attr("d", valueline6);  
+    // Add the valueline path.
+    svg.append("path")
+        .data([data])
+        .attr("class", "line7")
+        .attr("d", valueline7); 
+    svg.append("path")
+        .data([data])
+        .attr("class", "line8")
+        .attr("d", valueline8); 
+    // Add the X Axis
+    svg.append("g")
+        .attr("transform", "translate(0," + height + ")")
+        .call(d3.axisBottom(x));
+    
+     
+  
+    // Add the Y Axis
+    svg.append("g")
+        .call(d3.axisLeft(y));
+  
+    svg.selectAll("dot").data(data)
+    .enter()
+    .append("circle")
+    .attr("r",5)
+    .attr("cx",function(d){return x(d.Date)})
+    .attr("cy",function(d){return y(d.hum);})
+    .attr("class","dot")
+    .on("mouseover", function(d) {      
+        div.transition()        
+            .duration(200)      
+            .style("opacity", 1000);        
+        div.html("<b>hum</b>:" +d.hum + "<br/>" +"<b>Time</b>:"+d.time) 
+            .style("left", (d3.event.pageX) + "px")     
+            .style("top", (d3.event.pageY - 28) + "px");    
+    })                  
+    .on("mouseout", function(d) {       
+        div.transition()        
+            .duration(1000)     
+            .style("opacity", 0);   
+    });
+  
+    svg.selectAll("dot").data(data)
+    .enter()
+    .append("circle")
+    .attr("r",5)
+    .attr("cx",function(d){return x(d.Date)})
+    .attr("cy",function(d){return y(d.temp);})
+    .attr("class","dot1")
+    .on("mouseover", function(d) {      
+        div.transition()        
+            .duration(200)      
+            .style("opacity", 1000);        
+        div.html("<b>temp</b>:" +d.temp + "<br/>" +"<b>Time</b>:"+d.time)   
+            .style("left", (d3.event.pageX) + "px")     
+            .style("top", (d3.event.pageY - 28) + "px");    
+    })                  
+    .on("mouseout", function(d) {       
+        div.transition()        
+            .duration(1000)     
+            .style("opacity", 0);   
+    });
+  
+    svg.selectAll("dot").data(data)
+    .enter()
+    .append("circle")
+    .attr("r",5)
+    .attr("cx",function(d){return x(d.Date)})
+    .attr("cy",function(d){return y(d.pm25);})
+    .attr("class","dot3")
+    .on("mouseover", function(d) {      
+        div.transition()        
+            .duration(200)      
+            .style("opacity", 1000);        
+        div.html("<b>pm25</b>:" +d.pm25 + "<br/>" +"<b>Time</b>:"+d.time)   
+            .style("left", (d3.event.pageX) + "px")     
+            .style("top", (d3.event.pageY - 28) + "px");    
+    })                  
+    .on("mouseout", function(d) {       
+        div.transition()        
+            .duration(1000)     
+            .style("opacity", 0);   
+    });
+ svg.selectAll("dot").data(data)
+    .enter()
+    .append("circle")
+    .attr("r",5)
+    .attr("cx",function(d){return x(d.Date)})
+    .attr("cy",function(d){return y(d.pm10);})
+    .attr("class","dot4")
+    .on("mouseover", function(d) {      
+        div.transition()        
+            .duration(200)      
+            .style("opacity", 1000);        
+        div.html("<b>pm10</b>:" +d.pm10 + "<br/>" +"<b>Time</b>:"+d.time)   
+            .style("left", (d3.event.pageX) + "px")     
+            .style("top", (d3.event.pageY - 28) + "px");    
+    })                  
+    .on("mouseout", function(d) {       
+        div.transition()        
+            .duration(1000)     
+            .style("opacity", 0);   
+    });
+          svg.selectAll("dot").data(data)
+    .enter()
+    .append("circle")
+    .attr("r",5)
+    .attr("cx",function(d){return x(d.Date)})
+    .attr("cy",function(d){return y(d.ozone);})
+    .attr("class","dot")
+    .on("mouseover", function(d) {      
+        div.transition()        
+            .duration(200)      
+            .style("opacity", 1000);        
+        div.html("<b>ozone</b>:" +d.ozone + "<br/>" +"<b>Time</b>:"+d.time) 
+            .style("left", (d3.event.pageX) + "px")     
+            .style("top", (d3.event.pageY - 28) + "px");    
+    })                  
+    .on("mouseout", function(d) {       
+        div.transition()        
+            .duration(1000)     
+            .style("opacity", 0);   
+    });
+  
+    svg.selectAll("dot").data(data)
+    .enter()
+    .append("circle")
+    .attr("r",5)
+    .attr("cx",function(d){return x(d.Date)})
+    .attr("cy",function(d){return y(d.CO);})
+    .attr("class","dot1")
+    .on("mouseover", function(d) {      
+        div.transition()        
+            .duration(200)      
+            .style("opacity", 1000);        
+        div.html("<b>CO</b>:" +d.CO + "<br/>" +"<b>Time</b>:"+d.time)   
+            .style("left", (d3.event.pageX) + "px")     
+            .style("top", (d3.event.pageY - 28) + "px");    
+    })                  
+    .on("mouseout", function(d) {       
+        div.transition()        
+            .duration(1000)     
+            .style("opacity", 0);   
+    });
+  
+    svg.selectAll("dot").data(data)
+    .enter()
+    .append("circle")
+    .attr("r",5)
+    .attr("cx",function(d){return x(d.Date)})
+    .attr("cy",function(d){return y(d.SO);})
+    .attr("class","dot3")
+    .on("mouseover", function(d) {      
+        div.transition()        
+            .duration(200)      
+            .style("opacity", 1000);        
+        div.html("<b>SO</b>:" +d.SO + "<br/>" +"<b>Time</b>:"+d.time)   
+            .style("left", (d3.event.pageX) + "px")     
+            .style("top", (d3.event.pageY - 28) + "px");    
+    })                  
+    .on("mouseout", function(d) {       
+        div.transition()        
+            .duration(1000)     
+            .style("opacity", 0);   
+    });
+ svg.selectAll("dot").data(data)
+    .enter()
+    .append("circle")
+    .attr("r",5)
+    .attr("cx",function(d){return x(d.Date)})
+    .attr("cy",function(d){return y(d.NO);})
+    .attr("class","dot4")
+    .on("mouseover", function(d) {      
+        div.transition()        
+            .duration(200)      
+            .style("opacity", 1000);        
+        div.html("<b>NO</b>:" +d.NO + "<br/>" +"<b>Time</b>:"+d.time)   
+            .style("left", (d3.event.pageX) + "px")     
+            .style("top", (d3.event.pageY - 28) + "px");    
+    })                  
+    .on("mouseout", function(d) {       
+        div.transition()        
+            .duration(1000)     
+            .style("opacity", 0);   
+    });
+  }
+  
+  // Get the data
+ /* d3.json("data.json", function(error, data) {
+    if (error) throw error;
+ */ 
+data= [{"dev_id": "airin", "temp": 34, "pm10": 2, "hum": 56, "time": "09:38:00", "date": "2018-07-18", "pm25": 25, "ozone":25, "CO":30, "SO":45, "NO":33},
+   {"dev_id": "airin", "temp": 50, "pm10": 30, "hum": 70, "time": "09:38:25", "date": "2018-07-18", "pm25": 39, "ozone":25, "CO":39, "SO":47, "NO":33},
+    {"dev_id": "airin", "temp": 40, "pm10": 35, "hum": 40, "time": "09:38:55", "date": "2018-07-18", "pm25": 38, "ozone":83, "CO":70, "SO":85, "NO":45},
+     {"dev_id": "airin", "temp": 56, "pm10": 13, "hum": 45, "time": "09:39:02", "date": "2018-07-18", "pm25": 17, "ozone":53, "CO":34, "SO":47, "NO":33},
+      {"dev_id": "airin", "temp": 34, "pm10": 14, "hum": 45, "time": "09:39:07", "date": "2018-07-18", "pm25": 16, "ozone":93, "CO":20, "SO":65, "NO":56},
+       {"dev_id": "airin", "temp": 54, "pm10": 35, "hum": 43, "time": "09:39:14", "date": "2018-07-18", "pm25": 35, "ozone":63, "CO":36, "SO":44, "NO":63},
+        {"dev_id": "airin", "temp": 55, "pm10": 26, "hum": 66, "time": "09:39:20", "date": "2018-07-18", "pm25": 24, "ozone":33, "CO":80, "SO":65, "NO":53},
+         {"dev_id": "airin", "temp": 44, "pm10": 27, "hum": 65, "time": "09:39:26", "date": "2018-07-18", "pm25": 23, "ozone":33, "CO":37, "SO":45, "NO":63},
+          {"dev_id": "airin", "temp": 76, "pm10": 38, "hum": 54, "time": "09:39:32", "date": "2018-07-18", "pm25": 32, "ozone":73, "CO":50, "SO":44, "NO":73},
+           {"dev_id": "airin", "temp": 23, "pm10": 29, "hum": 46, "time": "09:39:39", "date": "2018-07-18", "pm25": 21, "ozone":25, "CO":32, "SO":65, "NO":53},
+            {"dev_id": "airin", "temp": 31, "pm10": 30, "hum": 64, "time": "09:39:44", "date": "2018-07-18", "pm25": 32, "ozone":63, "CO":50, "SO":55, "NO":33},
+             {"dev_id": "airin", "temp": 75, "pm10": 21, "hum": 87, "time": "09:39:50", "date": "2018-07-18", "pm25": 33, "ozone":23, "CO":38, "SO":85, "NO":33},
+              {"dev_id": "airin", "temp": 57, "pm10": 22, "hum": 63, "time": "09:39:56", "date": "2018-07-18", "pm25": 34, "ozone":53, "CO":50, "SO":44, "NO":35},
+               {"dev_id": "airin", "temp": 87, "pm10": 23, "hum": 44, "time": "09:40:02", "date": "2018-07-18", "pm25": 25, "ozone":28, "CO":32, "SO":55, "NO":43},
+                {"dev_id": "airin", "temp": 75, "pm10": 24, "hum": 96, "time": "09:40:08", "date": "2018-07-18", "pm25": 26, "ozone":43, "CO":50, "SO":75, "NO":63},
+                 {"dev_id": "airin", "temp": 73, "pm10": 25, "hum": 56, "time": "09:40:14", "date": "2018-07-18", "pm25": 27, "ozone":25, "CO":38, "SO":95, "NO":53},
+                  {"dev_id": "airin", "temp": 86, "pm10": 26, "hum": 98, "time": "09:40:20", "date": "2018-07-18", "pm25": 28, "ozone":43, "CO":70, "SO":65, "NO":93},
+                   {"dev_id": "airin", "temp": 44, "pm10": 37, "hum": 87, "time": "09:40:25", "date": "2018-07-18", "pm25": 39, "ozone":21, "CO":34, "SO":47, "NO":13},
+                    {"dev_id": "airin", "temp": 99, "pm10": 38, "hum": 25, "time": "09:40:32", "date": "2018-07-18", "pm25": 30, "ozone":73, "CO":50, "SO":65, "NO":23},
+                     {"dev_id": "airin", "temp": 22, "pm10": 39, "hum": 86, "time": "09:40:38", "date": "2018-07-18", "pm25": 38, "ozone":22, "CO":35, "SO":44, "NO":43},
+                      {"dev_id": "airin", "temp": 75, "pm10": 30, "hum": 99, "time": "09:40:52", "date": "2018-07-18", "pm25": 37, "ozone":13, "CO":40, "SO":15, "NO":73},
+                       {"dev_id": "airin", "temp": 64, "pm10": 39, "hum": 57, "time": "09:40:58", "date": "2018-07-18", "pm25": 31, "ozone":28, "CO":31, "SO":47, "NO":33},
+                        {"dev_id": "airin", "temp": 26, "pm10": 38, "hum": 74, "time": "09:41:05", "date": "2018-07-18", "pm25": 32, "ozone":73, "CO":20, "SO":65, "NO":33},
+                         {"dev_id": "airin", "temp": 44, "pm10": 37, "hum": 56, "time": "09:41:12", "date": "2018-07-18", "pm25": 37, "ozone":29, "CO":33, "SO":44, "NO":63},
+                          {"dev_id": "airin", "temp": 45, "pm10": 26, "hum": 84, "time": "09:41:19", "date": "2018-07-18", "pm25": 24, "ozone":33, "CO":40, "SO":25, "NO":43},
+                           {"dev_id": "airin", "temp": 35, "pm10": 25, "hum": 74, "time": "09:41:31", "date": "2018-07-18", "pm25": 25, "ozone":22, "CO":35, "SO":42, "NO":23},
+                            {"dev_id": "airin", "temp": 33, "pm10": 24, "hum": 57, "time": "09:41:36", "date": "2018-07-18", "pm25": 36, "ozone":53, "CO":60, "SO":45, "NO":13},
+                             {"dev_id": "airin", "temp": 55, "pm10": 23, "hum": 66, "time": "09:41:43", "date": "2018-07-18", "pm25": 25, "ozone":43, "CO":90, "SO":65, "NO":73},
+                              {"dev_id": "airin", "temp": 45, "pm10": 28, "hum": 56, "time": "09:42:00", "date": "2018-07-18", "pm25": 27, "ozone":53, "CO":80, "SO":75, "NO":63}]
+    
+    
+    
+    
+    
+    
+    // trigger render
+    draw(data);
+ /*   var x = document.getElementById("mytable").getElementsByTagName("td");
+    x[0].style.backgroundColor="steelblue";
+    x[0].style.t="white";
+    x[1].style.backgroundColor="green";
+    x[2].style.backgroundColor="yellow";
+    x[3].style.backgroundColor="red";
+    
+  ;
+  */
+  
+  </script>
+
+<script>
+
+
+  // set the dimensions and margins of the graph
+  var margin = {top: 100, right: 20, bottom: 30, left: 230},
+      width = 400;// - margin.left - margin.right,
+      height = 200;// - margin.top - margin.bottom;
+
+  var div = d3.select("body").append("div") 
+        .attr("class", "tooltip")               
+        .style("opacity", 0);
+  
+  // parse the date / time
+  var parseTime = d3.timeParse("%H:%M:%S");
+  
+  // set the ranges
+  var x = d3.scaleTime().range([0, width]);
+  var y = d3.scaleLinear().range([height, 0]);
+  
+  // define the line
+/*  var valueline = d3.line()
+      .x(function(d) { return x(d.Date); })
+      .y(function(d) { return y(d.hum); });
+  // define the line
+  var valueline2 = d3.line()
+      .x(function(d) { return x(d.Date); })
+      .y(function(d) { return y(d.temp); });
+  // define the line
+  var valueline3 = d3.line()
+      .x(function(d) { return x(d.Date); })
+      .y(function(d) { return y(d.pm25); });
+*/   // define the line
+  var valueline4 = d3.line()
+      .x(function(d) { return x(d.Date); })
+      .y(function(d) { return y(d.pm10); });
+ /* var valueline5 = d3.line()
+      .x(function(d) { return x(d.Date); })
+      .y(function(d) { return y(d.ozone); });
+  // define the line
+  var valueline6 = d3.line()
+      .x(function(d) { return x(d.Date); })
+      .y(function(d) { return y(d.CO); });
+  // define the line
+  var valueline7 = d3.line()
+      .x(function(d) { return x(d.Date); })
+      .y(function(d) { return y(d.SO); });
+   // define the line
+  var valueline8 = d3.line()
+      .x(function(d) { return x(d.Date); })
+      .y(function(d) { return y(d.NO); });
+  
+ */   
+  // append the svg obgect to the body of the page
+  // appends a 'group' element to 'svg'
+  // moves the 'group' element to the top left margin
+  var svg = d3.select("body div#pm1").append("svg")
+      .attr("width", width + margin.left + margin.right)
+      .attr("height", height + margin.top + margin.bottom)
+    .append("g")
+      .attr("transform","translate(" + margin.left + "," + margin.top + ")");
+  
+  function draw(data) {
+    
+    var data = data;
+    
+    // format the data
+    data.forEach(function(d) {
+        d.Date = parseTime(d.time);
+ //       d.hum = +d.hum;
+ //       d.temp = +d.temp;
+ //       d.pm25 = +d.pm25;
+        d.pm10 = +d.pm10;
+/*      d.ozone = +d.ozone;
+        d.CO = +d.CO;
+        d.SO = +d.SO;
+        d.NO = +d.NO;
+*/    });
+    
+    // sort years ascending
+    /*data.sort(function(a, b){
+      return a["Date"]-b["Date"];
+    })*/
+   
+    // Scale the range of the data
+    x.domain(d3.extent(data, function(d) { return d.Date; }));
+    y.domain([0, d3.max(data, function(d) {
+      return Math.max(/*d.hum, d.temp, d.pm25, */d.pm10/*, d.ozone, d.CO, d.SO, d.NO*/); })]);
+      
+        // text label for the x axis
+       svg.append("text")      
+        .attr("x", 200)
+        .attr("y",  230)
+        .style("text-anchor", "middle")
+        .text("Time");
+    // text label for the y axis
+       svg.append("text")     
+        .attr("y", 0)
+        .attr("x",  -30)
+        .style("text-anchor", "middle")
+        .text("μg/m3");
+
+      
+    
+ /*   // Add the valueline path.
+    svg.append("path")
+        .data([data])
+        .attr("class", "line")
+        .attr("d", valueline);
+    // Add the valueline path.
+    svg.append("path")
+        .data([data])
+        .attr("class", "line2")
+        .attr("d", valueline2);  
+    // Add the valueline path.
+    svg.append("path")
+        .data([data])
+        .attr("class", "line3")
+        .attr("d", valueline3); 
+  */ svg.append("path")
+        .data([data])
+        .attr("class", "line4")
+        .attr("d", valueline4); 
+          // Add the valueline path.
+  /*  svg.append("path")
+        .data([data])
+        .attr("class", "line5")
+        .attr("d", valueline5);
+    // Add the valueline path.
+    svg.append("path")
+        .data([data])
+        .attr("class", "line6")
+        .attr("d", valueline6);  
+    // Add the valueline path.
+    svg.append("path")
+        .data([data])
+        .attr("class", "line7")
+        .attr("d", valueline7); 
+    svg.append("path")
+        .data([data])
+        .attr("class", "line8")
+        .attr("d", valueline8); 
+  */  // Add the X Axis
+    svg.append("g")
+        .attr("transform", "translate(0," + height + ")")
+        .call(d3.axisBottom(x));
+  
+    // Add the Y Axis
+    svg.append("g")
+        .call(d3.axisLeft(y));
+  
+ /*   svg.selectAll("dot").data(data)
+    .enter()
+    .append("circle")
+    .attr("r",5)
+    .attr("cx",function(d){return x(d.Date)})
+    .attr("cy",function(d){return y(d.hum);})
+    .attr("class","dot")
+    .on("mouseover", function(d) {      
+        div.transition()        
+            .duration(200)      
+            .style("opacity", 1000);        
+        div.html("<b>hum</b>:" +d.hum + "<br/>" +"<b>Time</b>:"+d.time) 
+            .style("left", (d3.event.pageX) + "px")     
+            .style("top", (d3.event.pageY - 28) + "px");    
+    })                  
+    .on("mouseout", function(d) {       
+        div.transition()        
+            .duration(1000)     
+            .style("opacity", 0);   
+    });
+  
+   svg.selectAll("dot").data(data)
+    .enter()
+    .append("circle")
+    .attr("r",5)
+    .attr("cx",function(d){return x(d.Date)})
+    .attr("cy",function(d){return y(d.temp);})
+    .attr("class","dot1")
+    .on("mouseover", function(d) {      
+        div.transition()        
+            .duration(200)      
+            .style("opacity", 1000);        
+        div.html("<b>temp</b>:" +d.temp + "<br/>" +"<b>Time</b>:"+d.time)   
+            .style("left", (d3.event.pageX) + "px")     
+            .style("top", (d3.event.pageY - 28) + "px");    
+    })                  
+    .on("mouseout", function(d) {       
+        div.transition()        
+            .duration(1000)     
+            .style("opacity", 0);   
+    });
+  
+    svg.selectAll("dot").data(data)
+    .enter()
+    .append("circle")
+    .attr("r",5)
+    .attr("cx",function(d){return x(d.Date)})
+    .attr("cy",function(d){return y(d.pm25);})
+    .attr("class","dot3")
+    .on("mouseover", function(d) {      
+        div.transition()        
+            .duration(200)      
+            .style("opacity", 1000);        
+        div.html("<b>pm25</b>:" +d.pm25 + "<br/>" +"<b>Time</b>:"+d.time)   
+            .style("left", (d3.event.pageX) + "px")     
+            .style("top", (d3.event.pageY - 28) + "px");    
+    })                  
+    .on("mouseout", function(d) {       
+        div.transition()        
+            .duration(1000)     
+            .style("opacity", 0);   
+    });
+*/ svg.selectAll("dot").data(data)
+    .enter()
+    .append("circle")
+    .attr("r",5)
+    .attr("cx",function(d){return x(d.Date)})
+    .attr("cy",function(d){return y(d.pm10);})
+    .attr("class","dot4")
+    .on("mouseover", function(d) {      
+        div.transition()        
+            .duration(200)      
+            .style("opacity", 1000);        
+        div.html("<b>pm10</b>:" +d.pm10 + "<br/>" +"<b>Time</b>:"+d.time)   
+            .style("left", (d3.event.pageX) + "px")     
+            .style("top", (d3.event.pageY - 28) + "px");    
+    })                  
+    .on("mouseout", function(d) {       
+        div.transition()        
+            .duration(1000)     
+            .style("opacity", 0);   
+    });
+}
+/*        
+  }
+  
+  // Get the data
+ /* d3.json("data.json", function(error, data) {
+    if (error) throw error;
+ */ 
+data= [{"dev_id": "airin", "temp": 34, "pm10": 2, "hum": 56, "time": "09:38:00", "date": "2018-07-18", "pm25": 25, "ozone":25, "CO":30, "SO":45, "NO":33},
+   {"dev_id": "airin", "temp": 50, "pm10": 30, "hum": 70, "time": "09:38:25", "date": "2018-07-18", "pm25": 39, "ozone":25, "CO":39, "SO":47, "NO":33},
+    {"dev_id": "airin", "temp": 40, "pm10": 35, "hum": 40, "time": "09:38:55", "date": "2018-07-18", "pm25": 38, "ozone":83, "CO":70, "SO":85, "NO":45},
+     {"dev_id": "airin", "temp": 56, "pm10": 13, "hum": 45, "time": "09:39:02", "date": "2018-07-18", "pm25": 17, "ozone":53, "CO":34, "SO":47, "NO":33},
+      {"dev_id": "airin", "temp": 34, "pm10": 14, "hum": 45, "time": "09:39:07", "date": "2018-07-18", "pm25": 16, "ozone":93, "CO":20, "SO":65, "NO":56},
+       {"dev_id": "airin", "temp": 54, "pm10": 35, "hum": 43, "time": "09:39:14", "date": "2018-07-18", "pm25": 35, "ozone":63, "CO":36, "SO":44, "NO":63},
+        {"dev_id": "airin", "temp": 55, "pm10": 26, "hum": 66, "time": "09:39:20", "date": "2018-07-18", "pm25": 24, "ozone":33, "CO":80, "SO":65, "NO":53},
+         {"dev_id": "airin", "temp": 44, "pm10": 27, "hum": 65, "time": "09:39:26", "date": "2018-07-18", "pm25": 23, "ozone":33, "CO":37, "SO":45, "NO":63},
+          {"dev_id": "airin", "temp": 76, "pm10": 38, "hum": 54, "time": "09:39:32", "date": "2018-07-18", "pm25": 32, "ozone":73, "CO":50, "SO":44, "NO":73},
+           {"dev_id": "airin", "temp": 23, "pm10": 29, "hum": 46, "time": "09:39:39", "date": "2018-07-18", "pm25": 21, "ozone":25, "CO":32, "SO":65, "NO":53},
+            {"dev_id": "airin", "temp": 31, "pm10": 30, "hum": 64, "time": "09:39:44", "date": "2018-07-18", "pm25": 32, "ozone":63, "CO":50, "SO":55, "NO":33},
+             {"dev_id": "airin", "temp": 75, "pm10": 21, "hum": 87, "time": "09:39:50", "date": "2018-07-18", "pm25": 33, "ozone":23, "CO":38, "SO":85, "NO":33},
+              {"dev_id": "airin", "temp": 57, "pm10": 22, "hum": 63, "time": "09:39:56", "date": "2018-07-18", "pm25": 34, "ozone":53, "CO":50, "SO":44, "NO":35},
+               {"dev_id": "airin", "temp": 87, "pm10": 23, "hum": 44, "time": "09:40:02", "date": "2018-07-18", "pm25": 25, "ozone":28, "CO":32, "SO":55, "NO":43},
+                {"dev_id": "airin", "temp": 75, "pm10": 24, "hum": 96, "time": "09:40:08", "date": "2018-07-18", "pm25": 26, "ozone":43, "CO":50, "SO":75, "NO":63},
+                 {"dev_id": "airin", "temp": 73, "pm10": 25, "hum": 56, "time": "09:40:14", "date": "2018-07-18", "pm25": 27, "ozone":25, "CO":38, "SO":95, "NO":53},
+                  {"dev_id": "airin", "temp": 86, "pm10": 26, "hum": 98, "time": "09:40:20", "date": "2018-07-18", "pm25": 28, "ozone":43, "CO":70, "SO":65, "NO":93},
+                   {"dev_id": "airin", "temp": 44, "pm10": 37, "hum": 87, "time": "09:40:25", "date": "2018-07-18", "pm25": 39, "ozone":21, "CO":34, "SO":47, "NO":13},
+                    {"dev_id": "airin", "temp": 99, "pm10": 38, "hum": 25, "time": "09:40:32", "date": "2018-07-18", "pm25": 30, "ozone":73, "CO":50, "SO":65, "NO":23},
+                     {"dev_id": "airin", "temp": 22, "pm10": 39, "hum": 86, "time": "09:40:38", "date": "2018-07-18", "pm25": 38, "ozone":22, "CO":35, "SO":44, "NO":43},
+                      {"dev_id": "airin", "temp": 75, "pm10": 30, "hum": 99, "time": "09:40:52", "date": "2018-07-18", "pm25": 37, "ozone":13, "CO":40, "SO":15, "NO":73},
+                       {"dev_id": "airin", "temp": 64, "pm10": 39, "hum": 57, "time": "09:40:58", "date": "2018-07-18", "pm25": 31, "ozone":28, "CO":31, "SO":47, "NO":33},
+                        {"dev_id": "airin", "temp": 26, "pm10": 38, "hum": 74, "time": "09:41:05", "date": "2018-07-18", "pm25": 32, "ozone":73, "CO":20, "SO":65, "NO":33},
+                         {"dev_id": "airin", "temp": 44, "pm10": 37, "hum": 56, "time": "09:41:12", "date": "2018-07-18", "pm25": 37, "ozone":29, "CO":33, "SO":44, "NO":63},
+                          {"dev_id": "airin", "temp": 45, "pm10": 26, "hum": 84, "time": "09:41:19", "date": "2018-07-18", "pm25": 24, "ozone":33, "CO":40, "SO":25, "NO":43},
+                           {"dev_id": "airin", "temp": 35, "pm10": 25, "hum": 74, "time": "09:41:31", "date": "2018-07-18", "pm25": 25, "ozone":22, "CO":35, "SO":42, "NO":23},
+                            {"dev_id": "airin", "temp": 33, "pm10": 24, "hum": 57, "time": "09:41:36", "date": "2018-07-18", "pm25": 36, "ozone":53, "CO":60, "SO":45, "NO":13},
+                             {"dev_id": "airin", "temp": 55, "pm10": 23, "hum": 66, "time": "09:41:43", "date": "2018-07-18", "pm25": 25, "ozone":43, "CO":90, "SO":65, "NO":73},
+                              {"dev_id": "airin", "temp": 45, "pm10": 28, "hum": 56, "time": "09:42:00", "date": "2018-07-18", "pm25": 27, "ozone":53, "CO":80, "SO":75, "NO":63}]
+    
+    
+    
+    
+    
+    
+    // trigger render
+    draw(data);
+ /*   var x = document.getElementById("mytable").getElementsByTagName("td");
+    x[0].style.backgroundColor="steelblue";
+    x[0].style.t="white";
+    x[1].style.backgroundColor="green";
+    x[2].style.backgroundColor="yellow";
+    x[3].style.backgroundColor="red";
+    x[4].style.backgroundColor="lime";
+    x[5].style.backgroundColor="maroon";
+    x[6].style.backgroundColor="hotpink";
+    x[7].style.backgroundColor="orange";
+   */ 
+  //<td style="background-color: steelblue;"><b>hum</b></td>
+  
+  </script>
+  <script>
+ 
+
+  // set the dimensions and margins of the graph
+  var margin = {top: 100, right: 20, bottom: 30, left: 230},
+      width = 400;// - margin.left - margin.right,
+      height = 200;// - margin.top - margin.bottom;
+
+  var div = d3.select("body").append("div") 
+        .attr("class", "tooltip")               
+        .style("opacity", 0);
+  
+  // parse the date / time
+  var parseTime = d3.timeParse("%H:%M:%S");
+  
+  // set the ranges
+  var x = d3.scaleTime().range([0, width]);
+  var y = d3.scaleLinear().range([height, 0]);
+  
+  // define the line
+/*  var valueline = d3.line()
+      .x(function(d) { return x(d.Date); })
+      .y(function(d) { return y(d.hum); });
+  // define the line
+  var valueline2 = d3.line()
+      .x(function(d) { return x(d.Date); })
+      .y(function(d) { return y(d.temp); });
+  // define the line
+ */ var valueline3 = d3.line()
+      .x(function(d) { return x(d.Date); })
+      .y(function(d) { return y(d.pm25); });
+/*   // define the line
+  var valueline4 = d3.line()
+      .x(function(d) { return x(d.Date); })
+      .y(function(d) { return y(d.pm10); });
+  var valueline5 = d3.line()
+      .x(function(d) { return x(d.Date); })
+      .y(function(d) { return y(d.ozone); });
+  // define the line
+  var valueline6 = d3.line()
+      .x(function(d) { return x(d.Date); })
+      .y(function(d) { return y(d.CO); });
+  // define the line
+  var valueline7 = d3.line()
+      .x(function(d) { return x(d.Date); })
+      .y(function(d) { return y(d.SO); });
+   // define the line
+  var valueline8 = d3.line()
+      .x(function(d) { return x(d.Date); })
+      .y(function(d) { return y(d.NO); });
+  
+ */   
+  // append the svg obgect to the body of the page
+  // appends a 'group' element to 'svg'
+  // moves the 'group' element to the top left margin
+  var svg = d3.select("body div#tyu").append("svg")
+      .attr("width", width + margin.left + margin.right)
+      .attr("height", height + margin.top + margin.bottom)
+    .append("g")
+      .attr("transform","translate(" + margin.left + "," + margin.top + ")");
+  
+  function draw(data) {
+    
+    var data = data;
+    
+    // format the data
+    data.forEach(function(d) {
+        d.Date = parseTime(d.time);
+ //       d.hum = +d.hum;
+ //       d.temp = +d.temp;
+        d.pm25 = +d.pm25;
+ /*       d.pm10 = +d.pm10;
+        d.ozone = +d.ozone;
+        d.CO = +d.CO;
+        d.SO = +d.SO;
+        d.NO = +d.NO;
+*/    });
+    
+    // sort years ascending
+    /*data.sort(function(a, b){
+      return a["Date"]-b["Date"];
+    })*/
+   
+    // Scale the range of the data
+    x.domain(d3.extent(data, function(d) { return d.Date; }));
+    y.domain([0, d3.max(data, function(d) {
+      return Math.max(/*d.hum, d.temp,*/ d.pm25/*, d.pm10, d.ozone, d.CO, d.SO, d.NO*/); })]);
+
+      
+        // text label for the x axis
+       svg.append("text")      
+        .attr("x", 200)
+        .attr("y",  230)
+        .style("text-anchor", "middle")
+        .text("Time");
+    // text label for the y axis
+       svg.append("text")     
+        .attr("y", 0)
+        .attr("x",  -30)
+        .style("text-anchor", "middle")
+        .text("μg/m3");
+
+      
+    
+ /*   // Add the valueline path.
+    svg.append("path")
+        .data([data])
+        .attr("class", "line")
+        .attr("d", valueline);
+    // Add the valueline path.
+    svg.append("path")
+        .data([data])
+        .attr("class", "line2")
+        .attr("d", valueline2);  
+ */   // Add the valueline path.
+    svg.append("path")
+        .data([data])
+        .attr("class", "line3")
+        .attr("d", valueline3); 
+  
+    svg.append("g")
+        .attr("transform", "translate(0," + height + ")")
+        .call(d3.axisBottom(x));
+  
+    // Add the Y Axis
+    svg.append("g")
+        .call(d3.axisLeft(y));
+  
+   svg.selectAll("dot").data(data)
+    .enter()
+    .append("circle")
+    .attr("r",5)
+    .attr("cx",function(d){return x(d.Date)})
+    .attr("cy",function(d){return y(d.pm25);})
+    .attr("class","dot3")
+    .on("mouseover", function(d) {      
+        div.transition()        
+            .duration(200)      
+            .style("opacity", 1000);        
+        div.html("<b>pm25</b>:" +d.pm25 + "<br/>" +"<b>Time</b>:"+d.time)   
+            .style("left", (d3.event.pageX) + "px")     
+            .style("top", (d3.event.pageY - 28) + "px");    
+    })                  
+    .on("mouseout", function(d) {       
+        div.transition()        
+            .duration(1000)     
+            .style("opacity", 0);   
+    });
+
+  }
+  
+  // Get the data
+ /* d3.json("data.json", function(error, data) {
+    if (error) throw error;
+ */ 
+data= [{"dev_id": "airin", "temp": 34, "pm10": 2, "hum": 56, "time": "09:38:00", "date": "2018-07-18", "pm25": 25, "ozone":25, "CO":30, "SO":45, "NO":33},
+   {"dev_id": "airin", "temp": 50, "pm10": 30, "hum": 70, "time": "09:38:25", "date": "2018-07-18", "pm25": 39, "ozone":25, "CO":39, "SO":47, "NO":33},
+    {"dev_id": "airin", "temp": 40, "pm10": 35, "hum": 40, "time": "09:38:55", "date": "2018-07-18", "pm25": 38, "ozone":83, "CO":70, "SO":85, "NO":45},
+     {"dev_id": "airin", "temp": 56, "pm10": 13, "hum": 45, "time": "09:39:02", "date": "2018-07-18", "pm25": 17, "ozone":53, "CO":34, "SO":47, "NO":33},
+      {"dev_id": "airin", "temp": 34, "pm10": 14, "hum": 45, "time": "09:39:07", "date": "2018-07-18", "pm25": 16, "ozone":93, "CO":20, "SO":65, "NO":56},
+       {"dev_id": "airin", "temp": 54, "pm10": 35, "hum": 43, "time": "09:39:14", "date": "2018-07-18", "pm25": 35, "ozone":63, "CO":36, "SO":44, "NO":63},
+        {"dev_id": "airin", "temp": 55, "pm10": 26, "hum": 66, "time": "09:39:20", "date": "2018-07-18", "pm25": 24, "ozone":33, "CO":80, "SO":65, "NO":53},
+         {"dev_id": "airin", "temp": 44, "pm10": 27, "hum": 65, "time": "09:39:26", "date": "2018-07-18", "pm25": 23, "ozone":33, "CO":37, "SO":45, "NO":63},
+          {"dev_id": "airin", "temp": 76, "pm10": 38, "hum": 54, "time": "09:39:32", "date": "2018-07-18", "pm25": 32, "ozone":73, "CO":50, "SO":44, "NO":73},
+           {"dev_id": "airin", "temp": 23, "pm10": 29, "hum": 46, "time": "09:39:39", "date": "2018-07-18", "pm25": 21, "ozone":25, "CO":32, "SO":65, "NO":53},
+            {"dev_id": "airin", "temp": 31, "pm10": 30, "hum": 64, "time": "09:39:44", "date": "2018-07-18", "pm25": 32, "ozone":63, "CO":50, "SO":55, "NO":33},
+             {"dev_id": "airin", "temp": 75, "pm10": 21, "hum": 87, "time": "09:39:50", "date": "2018-07-18", "pm25": 33, "ozone":23, "CO":38, "SO":85, "NO":33},
+              {"dev_id": "airin", "temp": 57, "pm10": 22, "hum": 63, "time": "09:39:56", "date": "2018-07-18", "pm25": 34, "ozone":53, "CO":50, "SO":44, "NO":35},
+               {"dev_id": "airin", "temp": 87, "pm10": 23, "hum": 44, "time": "09:40:02", "date": "2018-07-18", "pm25": 25, "ozone":28, "CO":32, "SO":55, "NO":43},
+                {"dev_id": "airin", "temp": 75, "pm10": 24, "hum": 96, "time": "09:40:08", "date": "2018-07-18", "pm25": 26, "ozone":43, "CO":50, "SO":75, "NO":63},
+                 {"dev_id": "airin", "temp": 73, "pm10": 25, "hum": 56, "time": "09:40:14", "date": "2018-07-18", "pm25": 27, "ozone":25, "CO":38, "SO":95, "NO":53},
+                  {"dev_id": "airin", "temp": 86, "pm10": 26, "hum": 98, "time": "09:40:20", "date": "2018-07-18", "pm25": 28, "ozone":43, "CO":70, "SO":65, "NO":93},
+                   {"dev_id": "airin", "temp": 44, "pm10": 37, "hum": 87, "time": "09:40:25", "date": "2018-07-18", "pm25": 39, "ozone":21, "CO":34, "SO":47, "NO":13},
+                    {"dev_id": "airin", "temp": 99, "pm10": 38, "hum": 25, "time": "09:40:32", "date": "2018-07-18", "pm25": 30, "ozone":73, "CO":50, "SO":65, "NO":23},
+                     {"dev_id": "airin", "temp": 22, "pm10": 39, "hum": 86, "time": "09:40:38", "date": "2018-07-18", "pm25": 38, "ozone":22, "CO":35, "SO":44, "NO":43},
+                      {"dev_id": "airin", "temp": 75, "pm10": 30, "hum": 99, "time": "09:40:52", "date": "2018-07-18", "pm25": 37, "ozone":13, "CO":40, "SO":15, "NO":73},
+                       {"dev_id": "airin", "temp": 64, "pm10": 39, "hum": 57, "time": "09:40:58", "date": "2018-07-18", "pm25": 31, "ozone":28, "CO":31, "SO":47, "NO":33},
+                        {"dev_id": "airin", "temp": 26, "pm10": 38, "hum": 74, "time": "09:41:05", "date": "2018-07-18", "pm25": 32, "ozone":73, "CO":20, "SO":65, "NO":33},
+                         {"dev_id": "airin", "temp": 44, "pm10": 37, "hum": 56, "time": "09:41:12", "date": "2018-07-18", "pm25": 37, "ozone":29, "CO":33, "SO":44, "NO":63},
+                          {"dev_id": "airin", "temp": 45, "pm10": 26, "hum": 84, "time": "09:41:19", "date": "2018-07-18", "pm25": 24, "ozone":33, "CO":40, "SO":25, "NO":43},
+                           {"dev_id": "airin", "temp": 35, "pm10": 25, "hum": 74, "time": "09:41:31", "date": "2018-07-18", "pm25": 25, "ozone":22, "CO":35, "SO":42, "NO":23},
+                            {"dev_id": "airin", "temp": 33, "pm10": 24, "hum": 57, "time": "09:41:36", "date": "2018-07-18", "pm25": 36, "ozone":53, "CO":60, "SO":45, "NO":13},
+                             {"dev_id": "airin", "temp": 55, "pm10": 23, "hum": 66, "time": "09:41:43", "date": "2018-07-18", "pm25": 25, "ozone":43, "CO":90, "SO":65, "NO":73},
+                              {"dev_id": "airin", "temp": 45, "pm10": 28, "hum": 56, "time": "09:42:00", "date": "2018-07-18", "pm25": 27, "ozone":53, "CO":80, "SO":75, "NO":63}]
+    
+    
+    
+    
+    
+    
+    // trigger render
+    draw(data);
+ /*   var x = document.getElementById("mytable").getElementsByTagName("td");
+    x[0].style.backgroundColor="steelblue";
+    x[0].style.t="white";
+    x[1].style.backgroundColor="green";
+    x[2].style.backgroundColor="yellow";
+    x[3].style.backgroundColor="red";
+    x[4].style.backgroundColor="lime";
+    x[5].style.backgroundColor="maroon";
+    x[6].style.backgroundColor="hotpink";
+    x[7].style.backgroundColor="orange";
+   */ 
+  //<td style="background-color: steelblue;"><b>hum</b></td>
+  
+  </script>
+<script type="text/javascript">
+ var margin = {top: 100, right: 20, bottom: 30, left: 230},
+      width = 400;// - margin.left - margin.right,
+      height = 200;// - margin.top - margin.bottom;
+
+  var div = d3.select("body").append("div") 
+        .attr("class", "tooltip")               
+        .style("opacity", 0);
+  
+  // parse the date / time
+  var parseTime = d3.timeParse("%H:%M:%S");
+  
+  // set the ranges
+  var x = d3.scaleTime().range([0, width]);
+  var y = d3.scaleLinear().range([height, 0]);
+  
+  
+  var valueline6 = d3.line()
+      .x(function(d) { return x(d.Date); })
+      .y(function(d) { return y(d.CO); });
+ /* // define the line
+  var valueline7 = d3.line()
+      .x(function(d) { return x(d.Date); })
+      .y(function(d) { return y(d.SO); });
+   // define the line
+  var valueline8 = d3.line()
+      .x(function(d) { return x(d.Date); })
+      .y(function(d) { return y(d.NO); });
+  
+ */   
+  // append the svg obgect to the body of the page
+  // appends a 'group' element to 'svg'
+  // moves the 'group' element to the top left margin
+  var svg = d3.select("body div#qwe").append("svg")
+      .attr("width", width + margin.left + margin.right)
+      .attr("height", height + margin.top + margin.bottom)
+    .append("g")
+      .attr("transform","translate(" + margin.left + "," + margin.top + ")");
+  
+  function draw(data) {
+    
+    var data = data;
+    
+    // format the data
+    data.forEach(function(d) {
+        d.Date = parseTime(d.time);
+ //       d.hum = +d.hum;
+ //       d.temp = +d.temp;
+ //       d.pm25 = +d.pm25;
+ //       d.pm10 = +d.pm10;
+//      d.ozone = +d.ozone;
+        d.CO = +d.CO;
+/*      d.SO = +d.SO;
+        d.NO = +d.NO;
+*/    });
+    
+    // sort years ascending
+    /*data.sort(function(a, b){
+      return a["Date"]-b["Date"];
+    })*/
+   
+    // Scale the range of the data
+    x.domain(d3.extent(data, function(d) { return d.Date; }));
+    y.domain([0, d3.max(data, function(d) {
+      return Math.max(/*d.hum, d.temp, d.pm25, d.pm10, d.ozone, */d.CO/*, d.SO, d.NO*/); })]);
+      
+        // text label for the x axis
+       svg.append("text")      
+        .attr("x", 200)
+        .attr("y",  230)
+        .style("text-anchor", "middle")
+        .text("Time");
+    // text label for the y axis
+       svg.append("text")     
+        .attr("y", 0)
+        .attr("x",  -46)
+        .style("text-anchor", "middle")
+        .text("ppm");
+
+      
+    
+
+    svg.append("path")
+        .data([data])
+        .attr("class", "line6")
+        .attr("d", valueline6);  
+   /* // Add the valueline path.
+    svg.append("path")
+        .data([data])
+        .attr("class", "line7")
+        .attr("d", valueline7); 
+    svg.append("path")
+        .data([data])
+        .attr("class", "line8")
+        .attr("d", valueline8); 
+  */  // Add the X Axis
+    svg.append("g")
+        .attr("transform", "translate(0," + height + ")")
+        .call(d3.axisBottom(x));
+  
+    // Add the Y Axis
+    svg.append("g")
+        .call(d3.axisLeft(y));
+  
+    svg.selectAll("dot").data(data)
+    .enter()
+    .append("circle")
+    .attr("r",5)
+    .attr("cx",function(d){return x(d.Date)})
+    .attr("cy",function(d){return y(d.CO);})
+    .attr("class","dot1")
+    .on("mouseover", function(d) {      
+        div.transition()        
+            .duration(200)      
+            .style("opacity", 1000);        
+        div.html("<b>CO</b>:" +d.CO + "<br/>" +"<b>Time</b>:"+d.time)   
+            .style("left", (d3.event.pageX) + "px")     
+            .style("top", (d3.event.pageY - 28) + "px");    
+    })                  
+    .on("mouseout", function(d) {       
+        div.transition()        
+            .duration(1000)     
+            .style("opacity", 0);   
+    });
+  
+ 
+  }
+  
+  // Get the data
+ /* d3.json("data.json", function(error, data) {
+    if (error) throw error;
+ */ 
+data= [{"dev_id": "airin", "temp": 34, "pm10": 2, "hum": 56, "time": "09:38:00", "date": "2018-07-18", "pm25": 25, "ozone":25, "CO":30, "SO":45, "NO":33},
+   {"dev_id": "airin", "temp": 50, "pm10": 30, "hum": 70, "time": "09:38:25", "date": "2018-07-18", "pm25": 39, "ozone":25, "CO":39, "SO":47, "NO":33},
+    {"dev_id": "airin", "temp": 40, "pm10": 35, "hum": 40, "time": "09:38:55", "date": "2018-07-18", "pm25": 38, "ozone":83, "CO":70, "SO":85, "NO":45},
+     {"dev_id": "airin", "temp": 56, "pm10": 13, "hum": 45, "time": "09:39:02", "date": "2018-07-18", "pm25": 17, "ozone":53, "CO":34, "SO":47, "NO":33},
+      {"dev_id": "airin", "temp": 34, "pm10": 14, "hum": 45, "time": "09:39:07", "date": "2018-07-18", "pm25": 16, "ozone":93, "CO":20, "SO":65, "NO":56},
+       {"dev_id": "airin", "temp": 54, "pm10": 35, "hum": 43, "time": "09:39:14", "date": "2018-07-18", "pm25": 35, "ozone":63, "CO":36, "SO":44, "NO":63},
+        {"dev_id": "airin", "temp": 55, "pm10": 26, "hum": 66, "time": "09:39:20", "date": "2018-07-18", "pm25": 24, "ozone":33, "CO":30, "SO":65, "NO":53},
+         {"dev_id": "airin", "temp": 44, "pm10": 27, "hum": 65, "time": "09:39:26", "date": "2018-07-18", "pm25": 23, "ozone":33, "CO":37, "SO":45, "NO":63},
+          {"dev_id": "airin", "temp": 76, "pm10": 38, "hum": 54, "time": "09:39:32", "date": "2018-07-18", "pm25": 32, "ozone":73, "CO":50, "SO":44, "NO":73},
+           {"dev_id": "airin", "temp": 23, "pm10": 29, "hum": 46, "time": "09:39:39", "date": "2018-07-18", "pm25": 21, "ozone":25, "CO":32, "SO":65, "NO":53},
+            {"dev_id": "airin", "temp": 31, "pm10": 30, "hum": 64, "time": "09:39:44", "date": "2018-07-18", "pm25": 32, "ozone":63, "CO":50, "SO":55, "NO":33},
+             {"dev_id": "airin", "temp": 75, "pm10": 21, "hum": 87, "time": "09:39:50", "date": "2018-07-18", "pm25": 33, "ozone":23, "CO":38, "SO":85, "NO":33},
+              {"dev_id": "airin", "temp": 57, "pm10": 22, "hum": 63, "time": "09:39:56", "date": "2018-07-18", "pm25": 34, "ozone":53, "CO":50, "SO":44, "NO":35},
+               {"dev_id": "airin", "temp": 87, "pm10": 23, "hum": 44, "time": "09:40:02", "date": "2018-07-18", "pm25": 25, "ozone":28, "CO":32, "SO":55, "NO":43},
+                {"dev_id": "airin", "temp": 75, "pm10": 24, "hum": 96, "time": "09:40:08", "date": "2018-07-18", "pm25": 26, "ozone":43, "CO":50, "SO":75, "NO":63},
+                 {"dev_id": "airin", "temp": 73, "pm10": 25, "hum": 56, "time": "09:40:14", "date": "2018-07-18", "pm25": 27, "ozone":25, "CO":38, "SO":95, "NO":53},
+                  {"dev_id": "airin", "temp": 86, "pm10": 26, "hum": 98, "time": "09:40:20", "date": "2018-07-18", "pm25": 28, "ozone":43, "CO":70, "SO":65, "NO":93},
+                   {"dev_id": "airin", "temp": 44, "pm10": 37, "hum": 87, "time": "09:40:25", "date": "2018-07-18", "pm25": 39, "ozone":21, "CO":34, "SO":47, "NO":13},
+                    {"dev_id": "airin", "temp": 99, "pm10": 38, "hum": 25, "time": "09:40:32", "date": "2018-07-18", "pm25": 30, "ozone":73, "CO":50, "SO":65, "NO":23},
+                     {"dev_id": "airin", "temp": 22, "pm10": 39, "hum": 86, "time": "09:40:38", "date": "2018-07-18", "pm25": 38, "ozone":22, "CO":35, "SO":44, "NO":43},
+                      {"dev_id": "airin", "temp": 75, "pm10": 30, "hum": 99, "time": "09:40:52", "date": "2018-07-18", "pm25": 37, "ozone":13, "CO":40, "SO":15, "NO":73},
+                       {"dev_id": "airin", "temp": 64, "pm10": 39, "hum": 57, "time": "09:40:58", "date": "2018-07-18", "pm25": 31, "ozone":28, "CO":31, "SO":47, "NO":33},
+                        {"dev_id": "airin", "temp": 26, "pm10": 38, "hum": 74, "time": "09:41:05", "date": "2018-07-18", "pm25": 32, "ozone":73, "CO":20, "SO":65, "NO":33},
+                         {"dev_id": "airin", "temp": 44, "pm10": 37, "hum": 56, "time": "09:41:12", "date": "2018-07-18", "pm25": 37, "ozone":29, "CO":33, "SO":44, "NO":63},
+                          {"dev_id": "airin", "temp": 45, "pm10": 26, "hum": 84, "time": "09:41:19", "date": "2018-07-18", "pm25": 24, "ozone":33, "CO":40, "SO":25, "NO":43},
+                           {"dev_id": "airin", "temp": 35, "pm10": 25, "hum": 74, "time": "09:41:31", "date": "2018-07-18", "pm25": 25, "ozone":22, "CO":35, "SO":42, "NO":23},
+                            {"dev_id": "airin", "temp": 33, "pm10": 24, "hum": 57, "time": "09:41:36", "date": "2018-07-18", "pm25": 36, "ozone":53, "CO":60, "SO":45, "NO":13},
+                             {"dev_id": "airin", "temp": 55, "pm10": 23, "hum": 66, "time": "09:41:43", "date": "2018-07-18", "pm25": 25, "ozone":43, "CO":90, "SO":65, "NO":73},
+                              {"dev_id": "airin", "temp": 45, "pm10": 28, "hum": 56, "time": "09:42:00", "date": "2018-07-18", "pm25": 27, "ozone":53, "CO":80, "SO":75, "NO":63}]
+    
+    
+    
+    
+    
+    
+    // trigger render
+    draw(data);
+ /*   var x = document.getElementById("mytable").getElementsByTagName("td");
+    x[0].style.backgroundColor="steelblue";
+    x[0].style.t="white";
+    x[1].style.backgroundColor="green";
+    x[2].style.backgroundColor="yellow";
+    x[3].style.backgroundColor="red";
+    x[4].style.backgroundColor="lime";
+    x[5].style.backgroundColor="maroon";
+    x[6].style.backgroundColor="hotpink";
+    x[7].style.backgroundColor="orange";
+   */ 
+  //<td style="background-color: steelblue;"><b>hum</b></td>
+     
+
+
+
+
+
+</script>
+
+<script type="text/javascript">
+    
+// set the dimensions and margins of the graph
+  var margin = {top: 100, right: 20, bottom: 30, left: 230},
+      width = 400;// - margin.left - margin.right,
+      height = 200;// - margin.top - margin.bottom;
+
+  var div = d3.select("body").append("div") 
+        .attr("class", "tooltip")               
+        .style("opacity", 0);
+  
+  // parse the date / time
+  var parseTime = d3.timeParse("%H:%M:%S");
+  
+  // set the ranges
+  var x = d3.scaleTime().range([0, width]);
+  var y = d3.scaleLinear().range([height, 0]);
+  
+  // define the line
+/*  var valueline = d3.line()
+      .x(function(d) { return x(d.Date); })
+      .y(function(d) { return y(d.hum); });
+  // define the line
+  var valueline2 = d3.line()
+      .x(function(d) { return x(d.Date); })
+      .y(function(d) { return y(d.temp); });
+  // define the line
+  var valueline3 = d3.line()
+      .x(function(d) { return x(d.Date); })
+      .y(function(d) { return y(d.pm25); });
+   // define the line
+  var valueline4 = d3.line()
+      .x(function(d) { return x(d.Date); })
+      .y(function(d) { return y(d.pm10); });
+  var valueline5 = d3.line()
+      .x(function(d) { return x(d.Date); })
+      .y(function(d) { return y(d.ozone); });
+  // define the line
+  var valueline6 = d3.line()
+      .x(function(d) { return x(d.Date); })
+      .y(function(d) { return y(d.CO); });
+  // define the line
+  var valueline7 = d3.line()
+      .x(function(d) { return x(d.Date); })
+      .y(function(d) { return y(d.SO); });
+   // define the line
+ */ var valueline8 = d3.line()
+      .x(function(d) { return x(d.Date); })
+      .y(function(d) { return y(d.NO); });
+  
+    
+  // append the svg obgect to the body of the page
+  // appends a 'group' element to 'svg'
+  // moves the 'group' element to the top left margin
+  var svg = d3.select("body div#nitro").append("svg")
+      .attr("width", width + margin.left + margin.right)
+      .attr("height", height + margin.top + margin.bottom)
+    .append("g")
+      .attr("transform","translate(" + margin.left + "," + margin.top + ")");
+  
+  function draw(data) {
+    
+    var data = data;
+    
+    // format the data
+    data.forEach(function(d) {
+        d.Date = parseTime(d.time);
+ //       d.hum = +d.hum;
+ //       d.temp = +d.temp;
+ //       d.pm25 = +d.pm25;
+ //       d.pm10 = +d.pm10;
+//      d.ozone = +d.ozone;
+//      d.CO = +d.CO;
+//      d.SO = +d.SO;
+        d.NO = +d.NO;
+      });
+    
+    // sort years ascending
+    /*data.sort(function(a, b){
+      return a["Date"]-b["Date"];
+    })*/
+   
+    // Scale the range of the data
+    x.domain(d3.extent(data, function(d) { return d.Date; }));
+    y.domain([0, d3.max(data, function(d) {
+      return Math.max(/*d.hum, d.temp, d.pm25, d.pm10, d.ozone, d.CO, d.SO, */d.NO); })]);
+      
+        // text label for the x axis
+       svg.append("text")      
+        .attr("x", 200)
+        .attr("y",  230)
+        .style("text-anchor", "middle")
+        .text("Time");
+    // text label for the y axis
+       svg.append("text")     
+        .attr("y", 0)
+        .attr("x",  -45)
+        .style("text-anchor", "middle")
+        .text("ppm");
+
+      
+    
+ /*   // Add the valueline path.
+    svg.append("path")
+        .data([data])
+        .attr("class", "line")
+        .attr("d", valueline);
+    // Add the valueline path.
+    svg.append("path")
+        .data([data])
+        .attr("class", "line2")
+        .attr("d", valueline2);  
+    // Add the valueline path.
+    svg.append("path")
+        .data([data])
+        .attr("class", "line3")
+        .attr("d", valueline3); 
+   svg.append("path")
+        .data([data])
+        .attr("class", "line4")
+        .attr("d", valueline4); 
+          // Add the valueline path.
+    svg.append("path")
+        .data([data])
+        .attr("class", "line5")
+        .attr("d", valueline5);
+    // Add the valueline path.
+    svg.append("path")
+        .data([data])
+        .attr("class", "line6")
+        .attr("d", valueline6);  
+    // Add the valueline path.
+    svg.append("path")
+        .data([data])
+        .attr("class", "line7")
+        .attr("d", valueline7); 
+   */ svg.append("path")
+        .data([data])
+        .attr("class", "line8")
+        .attr("d", valueline8); 
+    // Add the X Axis
+    svg.append("g")
+        .attr("transform", "translate(0," + height + ")")
+        .call(d3.axisBottom(x));
+  
+    // Add the Y Axis
+    svg.append("g")
+        .call(d3.axisLeft(y));
+  
+ /*   svg.selectAll("dot").data(data)
+    .enter()
+    .append("circle")
+    .attr("r",5)
+    .attr("cx",function(d){return x(d.Date)})
+    .attr("cy",function(d){return y(d.hum);})
+    .attr("class","dot")
+    .on("mouseover", function(d) {      
+        div.transition()        
+            .duration(200)      
+            .style("opacity", 1000);        
+        div.html("<b>hum</b>:" +d.hum + "<br/>" +"<b>Time</b>:"+d.time) 
+            .style("left", (d3.event.pageX) + "px")     
+            .style("top", (d3.event.pageY - 28) + "px");    
+    })                  
+    .on("mouseout", function(d) {       
+        div.transition()        
+            .duration(1000)     
+            .style("opacity", 0);   
+    });
+  
+   svg.selectAll("dot").data(data)
+    .enter()
+    .append("circle")
+    .attr("r",5)
+    .attr("cx",function(d){return x(d.Date)})
+    .attr("cy",function(d){return y(d.temp);})
+    .attr("class","dot1")
+    .on("mouseover", function(d) {      
+        div.transition()        
+            .duration(200)      
+            .style("opacity", 1000);        
+        div.html("<b>temp</b>:" +d.temp + "<br/>" +"<b>Time</b>:"+d.time)   
+            .style("left", (d3.event.pageX) + "px")     
+            .style("top", (d3.event.pageY - 28) + "px");    
+    })                  
+    .on("mouseout", function(d) {       
+        div.transition()        
+            .duration(1000)     
+            .style("opacity", 0);   
+    });
+  
+    svg.selectAll("dot").data(data)
+    .enter()
+    .append("circle")
+    .attr("r",5)
+    .attr("cx",function(d){return x(d.Date)})
+    .attr("cy",function(d){return y(d.pm25);})
+    .attr("class","dot3")
+    .on("mouseover", function(d) {      
+        div.transition()        
+            .duration(200)      
+            .style("opacity", 1000);        
+        div.html("<b>pm25</b>:" +d.pm25 + "<br/>" +"<b>Time</b>:"+d.time)   
+            .style("left", (d3.event.pageX) + "px")     
+            .style("top", (d3.event.pageY - 28) + "px");    
+    })                  
+    .on("mouseout", function(d) {       
+        div.transition()        
+            .duration(1000)     
+            .style("opacity", 0);   
+    });
+ svg.selectAll("dot").data(data)
+    .enter()
+    .append("circle")
+    .attr("r",5)
+    .attr("cx",function(d){return x(d.Date)})
+    .attr("cy",function(d){return y(d.pm10);})
+    .attr("class","dot4")
+    .on("mouseover", function(d) {      
+        div.transition()        
+            .duration(200)      
+            .style("opacity", 1000);        
+        div.html("<b>pm10</b>:" +d.pm10 + "<br/>" +"<b>Time</b>:"+d.time)   
+            .style("left", (d3.event.pageX) + "px")     
+            .style("top", (d3.event.pageY - 28) + "px");    
+    })                  
+    .on("mouseout", function(d) {       
+        div.transition()        
+            .duration(1000)     
+            .style("opacity", 0);   
+    });
+          svg.selectAll("dot").data(data)
+    .enter()
+    .append("circle")
+    .attr("r",5)
+    .attr("cx",function(d){return x(d.Date)})
+    .attr("cy",function(d){return y(d.ozone);})
+    .attr("class","dot")
+    .on("mouseover", function(d) {      
+        div.transition()        
+            .duration(200)      
+            .style("opacity", 1000);        
+        div.html("<b>ozone</b>:" +d.ozone + "<br/>" +"<b>Time</b>:"+d.time) 
+            .style("left", (d3.event.pageX) + "px")     
+            .style("top", (d3.event.pageY - 28) + "px");    
+    })                  
+    .on("mouseout", function(d) {       
+        div.transition()        
+            .duration(1000)     
+            .style("opacity", 0);   
+    });
+  
+    svg.selectAll("dot").data(data)
+    .enter()
+    .append("circle")
+    .attr("r",5)
+    .attr("cx",function(d){return x(d.Date)})
+    .attr("cy",function(d){return y(d.CO);})
+    .attr("class","dot1")
+    .on("mouseover", function(d) {      
+        div.transition()        
+            .duration(200)      
+            .style("opacity", 1000);        
+        div.html("<b>CO</b>:" +d.CO + "<br/>" +"<b>Time</b>:"+d.time)   
+            .style("left", (d3.event.pageX) + "px")     
+            .style("top", (d3.event.pageY - 28) + "px");    
+    })                  
+    .on("mouseout", function(d) {       
+        div.transition()        
+            .duration(1000)     
+            .style("opacity", 0);   
+    });
+  
+    svg.selectAll("dot").data(data)
+    .enter()
+    .append("circle")
+    .attr("r",5)
+    .attr("cx",function(d){return x(d.Date)})
+    .attr("cy",function(d){return y(d.SO);})
+    .attr("class","dot3")
+    .on("mouseover", function(d) {      
+        div.transition()        
+            .duration(200)      
+            .style("opacity", 1000);        
+        div.html("<b>SO</b>:" +d.SO + "<br/>" +"<b>Time</b>:"+d.time)   
+            .style("left", (d3.event.pageX) + "px")     
+            .style("top", (d3.event.pageY - 28) + "px");    
+    })                  
+    .on("mouseout", function(d) {       
+        div.transition()        
+            .duration(1000)     
+            .style("opacity", 0);   
+    });
+ */svg.selectAll("dot").data(data)
+    .enter()
+    .append("circle")
+    .attr("r",5)
+    .attr("cx",function(d){return x(d.Date)})
+    .attr("cy",function(d){return y(d.NO);})
+    .attr("class","dot4")
+    .on("mouseover", function(d) {      
+        div.transition()        
+            .duration(200)      
+            .style("opacity", 1000);        
+        div.html("<b>NO</b>:" +d.NO + "<br/>" +"<b>Time</b>:"+d.time)   
+            .style("left", (d3.event.pageX) + "px")     
+            .style("top", (d3.event.pageY - 28) + "px");    
+    })                  
+    .on("mouseout", function(d) {       
+        div.transition()        
+            .duration(1000)     
+            .style("opacity", 0);   
+    });
+    
+  }
+  
+  // Get the data
+ /* d3.json("data.json", function(error, data) {
+    if (error) throw error;
+ */ 
+data= [{"dev_id": "airin", "temp": 34, "pm10": 2, "hum": 56, "time": "09:38:00", "date": "2018-07-18", "pm25": 25, "ozone":25, "CO":30, "SO":45, "NO":33},
+   {"dev_id": "airin", "temp": 50, "pm10": 30, "hum": 70, "time": "09:38:25", "date": "2018-07-18", "pm25": 39, "ozone":25, "CO":39, "SO":47, "NO":33},
+    {"dev_id": "airin", "temp": 40, "pm10": 35, "hum": 40, "time": "09:38:55", "date": "2018-07-18", "pm25": 38, "ozone":83, "CO":70, "SO":85, "NO":45},
+     {"dev_id": "airin", "temp": 56, "pm10": 13, "hum": 45, "time": "09:39:02", "date": "2018-07-18", "pm25": 17, "ozone":53, "CO":34, "SO":47, "NO":33},
+      {"dev_id": "airin", "temp": 34, "pm10": 14, "hum": 45, "time": "09:39:07", "date": "2018-07-18", "pm25": 16, "ozone":93, "CO":20, "SO":65, "NO":56},
+       {"dev_id": "airin", "temp": 54, "pm10": 35, "hum": 43, "time": "09:39:14", "date": "2018-07-18", "pm25": 35, "ozone":63, "CO":36, "SO":44, "NO":63},
+        {"dev_id": "airin", "temp": 55, "pm10": 26, "hum": 66, "time": "09:39:20", "date": "2018-07-18", "pm25": 24, "ozone":33, "CO":80, "SO":65, "NO":53},
+         {"dev_id": "airin", "temp": 44, "pm10": 27, "hum": 65, "time": "09:39:26", "date": "2018-07-18", "pm25": 23, "ozone":33, "CO":37, "SO":45, "NO":63},
+          {"dev_id": "airin", "temp": 76, "pm10": 38, "hum": 54, "time": "09:39:32", "date": "2018-07-18", "pm25": 32, "ozone":73, "CO":50, "SO":44, "NO":73},
+           {"dev_id": "airin", "temp": 23, "pm10": 29, "hum": 46, "time": "09:39:39", "date": "2018-07-18", "pm25": 21, "ozone":25, "CO":32, "SO":65, "NO":53},
+            {"dev_id": "airin", "temp": 31, "pm10": 30, "hum": 64, "time": "09:39:44", "date": "2018-07-18", "pm25": 32, "ozone":63, "CO":50, "SO":55, "NO":33},
+             {"dev_id": "airin", "temp": 75, "pm10": 21, "hum": 87, "time": "09:39:50", "date": "2018-07-18", "pm25": 33, "ozone":23, "CO":38, "SO":85, "NO":33},
+              {"dev_id": "airin", "temp": 57, "pm10": 22, "hum": 63, "time": "09:39:56", "date": "2018-07-18", "pm25": 34, "ozone":53, "CO":50, "SO":44, "NO":35},
+               {"dev_id": "airin", "temp": 87, "pm10": 23, "hum": 44, "time": "09:40:02", "date": "2018-07-18", "pm25": 25, "ozone":28, "CO":32, "SO":55, "NO":43},
+                {"dev_id": "airin", "temp": 75, "pm10": 24, "hum": 96, "time": "09:40:08", "date": "2018-07-18", "pm25": 26, "ozone":43, "CO":50, "SO":75, "NO":63},
+                 {"dev_id": "airin", "temp": 73, "pm10": 25, "hum": 56, "time": "09:40:14", "date": "2018-07-18", "pm25": 27, "ozone":25, "CO":38, "SO":95, "NO":53},
+                  {"dev_id": "airin", "temp": 86, "pm10": 26, "hum": 98, "time": "09:40:20", "date": "2018-07-18", "pm25": 28, "ozone":43, "CO":70, "SO":65, "NO":80},
+                   {"dev_id": "airin", "temp": 44, "pm10": 37, "hum": 87, "time": "09:40:25", "date": "2018-07-18", "pm25": 39, "ozone":21, "CO":34, "SO":47, "NO":13},
+                    {"dev_id": "airin", "temp": 99, "pm10": 38, "hum": 25, "time": "09:40:32", "date": "2018-07-18", "pm25": 30, "ozone":73, "CO":50, "SO":65, "NO":23},
+                     {"dev_id": "airin", "temp": 22, "pm10": 39, "hum": 86, "time": "09:40:38", "date": "2018-07-18", "pm25": 38, "ozone":22, "CO":35, "SO":44, "NO":43},
+                      {"dev_id": "airin", "temp": 75, "pm10": 30, "hum": 99, "time": "09:40:52", "date": "2018-07-18", "pm25": 37, "ozone":13, "CO":40, "SO":15, "NO":73},
+                       {"dev_id": "airin", "temp": 64, "pm10": 39, "hum": 57, "time": "09:40:58", "date": "2018-07-18", "pm25": 31, "ozone":28, "CO":31, "SO":47, "NO":33},
+                        {"dev_id": "airin", "temp": 26, "pm10": 38, "hum": 74, "time": "09:41:05", "date": "2018-07-18", "pm25": 32, "ozone":73, "CO":20, "SO":65, "NO":33},
+                         {"dev_id": "airin", "temp": 44, "pm10": 37, "hum": 56, "time": "09:41:12", "date": "2018-07-18", "pm25": 37, "ozone":29, "CO":33, "SO":44, "NO":63},
+                          {"dev_id": "airin", "temp": 45, "pm10": 26, "hum": 84, "time": "09:41:19", "date": "2018-07-18", "pm25": 24, "ozone":33, "CO":40, "SO":25, "NO":43},
+                           {"dev_id": "airin", "temp": 35, "pm10": 25, "hum": 74, "time": "09:41:31", "date": "2018-07-18", "pm25": 25, "ozone":22, "CO":35, "SO":42, "NO":23},
+                            {"dev_id": "airin", "temp": 33, "pm10": 24, "hum": 57, "time": "09:41:36", "date": "2018-07-18", "pm25": 36, "ozone":53, "CO":60, "SO":45, "NO":13},
+                             {"dev_id": "airin", "temp": 55, "pm10": 23, "hum": 66, "time": "09:41:43", "date": "2018-07-18", "pm25": 25, "ozone":43, "CO":90, "SO":65, "NO":73},
+                              {"dev_id": "airin", "temp": 45, "pm10": 28, "hum": 56, "time": "09:42:00", "date": "2018-07-18", "pm25": 27, "ozone":53, "CO":80, "SO":75, "NO":63}]
+    
+    
+    
+    
+    
+    
+    // trigger render
+    draw(data);
+ /*   var x = document.getElementById("mytable").getElementsByTagName("td");
+    x[0].style.backgroundColor="steelblue";
+    x[0].style.t="white";
+    x[1].style.backgroundColor="green";
+    x[2].style.backgroundColor="yellow";
+    x[3].style.backgroundColor="red";
+    x[4].style.backgroundColor="lime";
+    x[5].style.backgroundColor="maroon";
+    x[6].style.backgroundColor="hotpink";
+    x[7].style.backgroundColor="orange";
+   */ 
+  //<td style="background-color: steelblue;"><b>hum</b></td>
+  
+
+
+
+
+</script>
+<script type="text/javascript">
+    
+ var margin = {top: 100, right: 20, bottom: 30, left: 230},
+      width = 400;// - margin.left - margin.right,
+      height = 200;// - margin.top - margin.bottom;
+
+  var div = d3.select("body").append("div") 
+        .attr("class", "tooltip")               
+        .style("opacity", 0);
+  
+  // parse the date / time
+  var parseTime = d3.timeParse("%H:%M:%S");
+  
+  // set the ranges
+  var x = d3.scaleTime().range([0, width]);
+  var y = d3.scaleLinear().range([height, 0]);
+  
+  // define the line
+/*  var valueline = d3.line()
+      .x(function(d) { return x(d.Date); })
+      .y(function(d) { return y(d.hum); });
+  // define the line
+  var valueline2 = d3.line()
+      .x(function(d) { return x(d.Date); })
+      .y(function(d) { return y(d.temp); });
+  // define the line
+  var valueline3 = d3.line()
+      .x(function(d) { return x(d.Date); })
+      .y(function(d) { return y(d.pm25); });
+   // define the line
+  var valueline4 = d3.line()
+      .x(function(d) { return x(d.Date); })
+      .y(function(d) { return y(d.pm10); });
+  var valueline5 = d3.line()
+      .x(function(d) { return x(d.Date); })
+      .y(function(d) { return y(d.ozone); });
+  // define the line
+  var valueline6 = d3.line()
+      .x(function(d) { return x(d.Date); })
+      .y(function(d) { return y(d.CO); });
+ */ // define the line
+  var valueline7 = d3.line()
+      .x(function(d) { return x(d.Date); })
+      .y(function(d) { return y(d.SO); });
+   // define the line
+ /* var valueline8 = d3.line()
+      .x(function(d) { return x(d.Date); })
+      .y(function(d) { return y(d.NO); });
+  
+ */   
+  // append the svg obgect to the body of the page
+  // appends a 'group' element to 'svg'
+  // moves the 'group' element to the top left margin
+  var svg = d3.select("body div#poli").append("svg")
+      .attr("width", width + margin.left + margin.right)
+      .attr("height", height + margin.top + margin.bottom)
+    .append("g")
+      .attr("transform","translate(" + margin.left + "," + margin.top + ")");
+  
+  function draw(data) {
+    
+    var data = data;
+    
+    // format the data
+    data.forEach(function(d) {
+        d.Date = parseTime(d.time);
+ //       d.hum = +d.hum;
+ //       d.temp = +d.temp;
+ //       d.pm25 = +d.pm25;
+ //       d.pm10 = +d.pm10;
+//      d.ozone = +d.ozone;
+//      d.CO = +d.CO;
+        d.SO = +d.SO;
+/*      d.NO = +d.NO;
+*/    });
+    
+    // sort years ascending
+    /*data.sort(function(a, b){
+      return a["Date"]-b["Date"];
+    })*/
+   
+    // Scale the range of the data
+    x.domain(d3.extent(data, function(d) { return d.Date; }));
+    y.domain([0, d3.max(data, function(d) {
+      return Math.max(/*d.hum, d.temp, d.pm25, d.pm10, d.ozone, d.CO, */d.SO/*, d.NO*/); })]);
+      
+        // text label for the x axis
+       svg.append("text")      
+        .attr("x", 200)
+        .attr("y",  230)
+        .style("text-anchor", "middle")
+        .text("Time");
+    // text label for the y axis
+       svg.append("text")     
+        .attr("y", 0)
+        .attr("x",  -45)
+        .style("text-anchor", "middle")
+        .text("ppb");
+
+      
+    
+ /*   // Add the valueline path.
+    svg.append("path")
+        .data([data])
+        .attr("class", "line")
+        .attr("d", valueline);
+    // Add the valueline path.
+    svg.append("path")
+        .data([data])
+        .attr("class", "line2")
+        .attr("d", valueline2);  
+    // Add the valueline path.
+    svg.append("path")
+        .data([data])
+        .attr("class", "line3")
+        .attr("d", valueline3); 
+   svg.append("path")
+        .data([data])
+        .attr("class", "line4")
+        .attr("d", valueline4); 
+          // Add the valueline path.
+    svg.append("path")
+        .data([data])
+        .attr("class", "line5")
+        .attr("d", valueline5);
+    // Add the valueline path.
+    svg.append("path")
+        .data([data])
+        .attr("class", "line6")
+        .attr("d", valueline6);  
+   */ // Add the valueline path.
+    svg.append("path")
+        .data([data])
+        .attr("class", "line7")
+        .attr("d", valueline7); 
+   /* svg.append("path")
+        .data([data])
+        .attr("class", "line8")
+        .attr("d", valueline8); 
+  */  // Add the X Axis
+    svg.append("g")
+        .attr("transform", "translate(0," + height + ")")
+        .call(d3.axisBottom(x));
+  
+    // Add the Y Axis
+    svg.append("g")
+        .call(d3.axisLeft(y));
+  
+   svg.selectAll("dot").data(data)
+    .enter()
+    .append("circle")
+    .attr("r",5)
+    .attr("cx",function(d){return x(d.Date)})
+    .attr("cy",function(d){return y(d.SO);})
+    .attr("class","dot3")
+    .on("mouseover", function(d) {      
+        div.transition()        
+            .duration(200)      
+            .style("opacity", 1000);        
+        div.html("<b>SO</b>:" +d.SO + "<br/>" +"<b>Time</b>:"+d.time)   
+            .style("left", (d3.event.pageX) + "px")     
+            .style("top", (d3.event.pageY - 28) + "px");    
+    })                  
+    .on("mouseout", function(d) {       
+        div.transition()        
+            .duration(1000)     
+            .style("opacity", 0);   
+    });
+  
+  }
+  
+  // Get the data
+ /* d3.json("data.json", function(error, data) {
+    if (error) throw error;
+ */ 
+data= [{"dev_id": "airin", "temp": 34, "pm10": 2, "hum": 56, "time": "09:38:00", "date": "2018-07-18", "pm25": 25, "ozone":25, "CO":30, "SO":45, "NO":33},
+   {"dev_id": "airin", "temp": 50, "pm10": 30, "hum": 70, "time": "09:38:25", "date": "2018-07-18", "pm25": 39, "ozone":25, "CO":39, "SO":47, "NO":33},
+    {"dev_id": "airin", "temp": 40, "pm10": 35, "hum": 40, "time": "09:38:55", "date": "2018-07-18", "pm25": 38, "ozone":83, "CO":70, "SO":80, "NO":45},
+     {"dev_id": "airin", "temp": 56, "pm10": 13, "hum": 45, "time": "09:39:02", "date": "2018-07-18", "pm25": 17, "ozone":53, "CO":34, "SO":47, "NO":33},
+      {"dev_id": "airin", "temp": 34, "pm10": 14, "hum": 45, "time": "09:39:07", "date": "2018-07-18", "pm25": 16, "ozone":93, "CO":20, "SO":65, "NO":56},
+       {"dev_id": "airin", "temp": 54, "pm10": 35, "hum": 43, "time": "09:39:14", "date": "2018-07-18", "pm25": 35, "ozone":63, "CO":36, "SO":44, "NO":63},
+        {"dev_id": "airin", "temp": 55, "pm10": 26, "hum": 66, "time": "09:39:20", "date": "2018-07-18", "pm25": 24, "ozone":33, "CO":80, "SO":65, "NO":53},
+         {"dev_id": "airin", "temp": 44, "pm10": 27, "hum": 65, "time": "09:39:26", "date": "2018-07-18", "pm25": 23, "ozone":33, "CO":37, "SO":45, "NO":63},
+          {"dev_id": "airin", "temp": 76, "pm10": 38, "hum": 54, "time": "09:39:32", "date": "2018-07-18", "pm25": 32, "ozone":73, "CO":50, "SO":44, "NO":73},
+           {"dev_id": "airin", "temp": 23, "pm10": 29, "hum": 46, "time": "09:39:39", "date": "2018-07-18", "pm25": 21, "ozone":25, "CO":32, "SO":65, "NO":53},
+            {"dev_id": "airin", "temp": 31, "pm10": 30, "hum": 64, "time": "09:39:44", "date": "2018-07-18", "pm25": 32, "ozone":63, "CO":50, "SO":55, "NO":33},
+             {"dev_id": "airin", "temp": 75, "pm10": 21, "hum": 87, "time": "09:39:50", "date": "2018-07-18", "pm25": 33, "ozone":23, "CO":38, "SO":80, "NO":33},
+              {"dev_id": "airin", "temp": 57, "pm10": 22, "hum": 63, "time": "09:39:56", "date": "2018-07-18", "pm25": 34, "ozone":53, "CO":50, "SO":44, "NO":35},
+               {"dev_id": "airin", "temp": 87, "pm10": 23, "hum": 44, "time": "09:40:02", "date": "2018-07-18", "pm25": 25, "ozone":28, "CO":32, "SO":55, "NO":43},
+                {"dev_id": "airin", "temp": 75, "pm10": 24, "hum": 96, "time": "09:40:08", "date": "2018-07-18", "pm25": 26, "ozone":43, "CO":50, "SO":75, "NO":63},
+                 {"dev_id": "airin", "temp": 73, "pm10": 25, "hum": 56, "time": "09:40:14", "date": "2018-07-18", "pm25": 27, "ozone":25, "CO":38, "SO":80, "NO":53},
+                  {"dev_id": "airin", "temp": 86, "pm10": 26, "hum": 98, "time": "09:40:20", "date": "2018-07-18", "pm25": 28, "ozone":43, "CO":70, "SO":65, "NO":93},
+                   {"dev_id": "airin", "temp": 44, "pm10": 37, "hum": 87, "time": "09:40:25", "date": "2018-07-18", "pm25": 39, "ozone":21, "CO":34, "SO":47, "NO":13},
+                    {"dev_id": "airin", "temp": 99, "pm10": 38, "hum": 25, "time": "09:40:32", "date": "2018-07-18", "pm25": 30, "ozone":73, "CO":50, "SO":65, "NO":23},
+                     {"dev_id": "airin", "temp": 22, "pm10": 39, "hum": 86, "time": "09:40:38", "date": "2018-07-18", "pm25": 38, "ozone":22, "CO":35, "SO":44, "NO":43},
+                      {"dev_id": "airin", "temp": 75, "pm10": 30, "hum": 99, "time": "09:40:52", "date": "2018-07-18", "pm25": 37, "ozone":13, "CO":40, "SO":15, "NO":73},
+                       {"dev_id": "airin", "temp": 64, "pm10": 39, "hum": 57, "time": "09:40:58", "date": "2018-07-18", "pm25": 31, "ozone":28, "CO":31, "SO":47, "NO":33},
+                        {"dev_id": "airin", "temp": 26, "pm10": 38, "hum": 74, "time": "09:41:05", "date": "2018-07-18", "pm25": 32, "ozone":73, "CO":20, "SO":65, "NO":33},
+                         {"dev_id": "airin", "temp": 44, "pm10": 37, "hum": 56, "time": "09:41:12", "date": "2018-07-18", "pm25": 37, "ozone":29, "CO":33, "SO":44, "NO":63},
+                          {"dev_id": "airin", "temp": 45, "pm10": 26, "hum": 84, "time": "09:41:19", "date": "2018-07-18", "pm25": 24, "ozone":33, "CO":40, "SO":25, "NO":43},
+                           {"dev_id": "airin", "temp": 35, "pm10": 25, "hum": 74, "time": "09:41:31", "date": "2018-07-18", "pm25": 25, "ozone":22, "CO":35, "SO":42, "NO":23},
+                            {"dev_id": "airin", "temp": 33, "pm10": 24, "hum": 57, "time": "09:41:36", "date": "2018-07-18", "pm25": 36, "ozone":53, "CO":60, "SO":45, "NO":13},
+                             {"dev_id": "airin", "temp": 55, "pm10": 23, "hum": 66, "time": "09:41:43", "date": "2018-07-18", "pm25": 25, "ozone":43, "CO":90, "SO":65, "NO":73},
+                              {"dev_id": "airin", "temp": 45, "pm10": 28, "hum": 56, "time": "09:42:00", "date": "2018-07-18", "pm25": 27, "ozone":53, "CO":80, "SO":75, "NO":63}]
+    
+    
+    
+    
+    
+    
+    // trigger render
+    draw(data);
+ /*   var x = document.getElementById("mytable").getElementsByTagName("td");
+    x[0].style.backgroundColor="steelblue";
+    x[0].style.t="white";
+    x[1].style.backgroundColor="green";
+    x[2].style.backgroundColor="yellow";
+    x[3].style.backgroundColor="red";
+    x[4].style.backgroundColor="lime";
+    x[5].style.backgroundColor="maroon";
+    x[6].style.backgroundColor="hotpink";
+    x[7].style.backgroundColor="orange";
+   */ 
+  //<td style="background-color: 
+
+
+
+
+
+
+</script>
+<script type="text/javascript">
+     // set the dimensions and margins of the graph
+  var margin = {top: 100, right: 20, bottom: 30, left: 230},
+      width = 400;// - margin.left - margin.right,
+      height = 200;// - margin.top - margin.bottom;
+
+  var div = d3.select("body").append("div") 
+        .attr("class", "tooltip")               
+        .style("opacity", 0);
+  
+  // parse the date / time
+  var parseTime = d3.timeParse("%H:%M:%S");
+  
+  // set the ranges
+  var x = d3.scaleTime().range([0, width]);
+  var y = d3.scaleLinear().range([height, 0]);
+  
+  // define the line
+/*  var valueline = d3.line()
+      .x(function(d) { return x(d.Date); })
+      .y(function(d) { return y(d.hum); });
+  // define the line
+  var valueline2 = d3.line()
+      .x(function(d) { return x(d.Date); })
+      .y(function(d) { return y(d.temp); });
+  // define the line
+  var valueline3 = d3.line()
+      .x(function(d) { return x(d.Date); })
+      .y(function(d) { return y(d.pm25); });
+   // define the line
+  var valueline4 = d3.line()
+      .x(function(d) { return x(d.Date); })
+      .y(function(d) { return y(d.pm10); });
+ */ var valueline5 = d3.line()
+      .x(function(d) { return x(d.Date); })
+      .y(function(d) { return y(d.ozone); });
+ /* // define the line
+  var valueline6 = d3.line()
+      .x(function(d) { return x(d.Date); })
+      .y(function(d) { return y(d.CO); });
+  // define the line
+  var valueline7 = d3.line()
+      .x(function(d) { return x(d.Date); })
+      .y(function(d) { return y(d.SO); });
+   // define the line
+  var valueline8 = d3.line()
+      .x(function(d) { return x(d.Date); })
+      .y(function(d) { return y(d.NO); });
+  
+ */   
+  // append the svg obgect to the body of the page
+  // appends a 'group' element to 'svg'
+  // moves the 'group' element to the top left margin
+  var svg = d3.select("body div#pios").append("svg")
+      .attr("width", width + margin.left + margin.right)
+      .attr("height", height + margin.top + margin.bottom)
+    .append("g")
+      .attr("transform","translate(" + margin.left + "," + margin.top + ")");
+  
+  function draw(data) {
+    
+    var data = data;
+    
+    // format the data
+    data.forEach(function(d) {
+        d.Date = parseTime(d.time);
+ //       d.hum = +d.hum;
+ //       d.temp = +d.temp;
+ //       d.pm25 = +d.pm25;
+ //       d.pm10 = +d.pm10;
+        d.ozone = +d.ozone;
+/*      d.CO = +d.CO;
+        d.SO = +d.SO;
+        d.NO = +d.NO;
+*/    });
+    
+    // sort years ascending
+    /*data.sort(function(a, b){
+      return a["Date"]-b["Date"];
+    })*/
+   
+    // Scale the range of the data
+    x.domain(d3.extent(data, function(d) { return d.Date; }));
+    y.domain([0, d3.max(data, function(d) {
+      return Math.max(/*d.hum, d.temp, d.pm25, d.pm10, */d.ozone/*, d.CO, d.SO, d.NO*/); })]);
+      
+        // text label for the x axis
+       svg.append("text")      
+        .attr("x", 200)
+        .attr("y",  230)
+        .style("text-anchor", "middle")
+        .text("Time");
+    // text label for the y axis
+       svg.append("text")     
+        .attr("y", 0)
+        .attr("x",  -45)
+        .style("text-anchor", "middle")
+        .text("ppb");
+
+      
+    
+ /*   // Add the valueline path.
+    svg.append("path")
+        .data([data])
+        .attr("class", "line")
+        .attr("d", valueline);
+    // Add the valueline path.
+    svg.append("path")
+        .data([data])
+        .attr("class", "line2")
+        .attr("d", valueline2);  
+    // Add the valueline path.
+    svg.append("path")
+        .data([data])
+        .attr("class", "line3")
+        .attr("d", valueline3); 
+   svg.append("path")
+        .data([data])
+        .attr("class", "line4")
+        .attr("d", valueline4); 
+          // Add the valueline path.
+  */  svg.append("path")
+        .data([data])
+        .attr("class", "line5")
+        .attr("d", valueline5);
+  /*  // Add the valueline path.
+    svg.append("path")
+        .data([data])
+        .attr("class", "line6")
+        .attr("d", valueline6);  
+    // Add the valueline path.
+    svg.append("path")
+        .data([data])
+        .attr("class", "line7")
+        .attr("d", valueline7); 
+    svg.append("path")
+        .data([data])
+        .attr("class", "line8")
+        .attr("d", valueline8); 
+  */  // Add the X Axis
+    svg.append("g")
+        .attr("transform", "translate(0," + height + ")")
+        .call(d3.axisBottom(x));
+  
+    // Add the Y Axis
+    svg.append("g")
+        .call(d3.axisLeft(y));
+  
+ /*   svg.selectAll("dot").data(data)
+    .enter()
+    .append("circle")
+    .attr("r",5)
+    .attr("cx",function(d){return x(d.Date)})
+    .attr("cy",function(d){return y(d.hum);})
+    .attr("class","dot")
+    .on("mouseover", function(d) {      
+        div.transition()        
+            .duration(200)      
+            .style("opacity", 1000);        
+        div.html("<b>hum</b>:" +d.hum + "<br/>" +"<b>Time</b>:"+d.time) 
+            .style("left", (d3.event.pageX) + "px")     
+            .style("top", (d3.event.pageY - 28) + "px");    
+    })                  
+    .on("mouseout", function(d) {       
+        div.transition()        
+            .duration(1000)     
+            .style("opacity", 0);   
+    });
+  
+   svg.selectAll("dot").data(data)
+    .enter()
+    .append("circle")
+    .attr("r",5)
+    .attr("cx",function(d){return x(d.Date)})
+    .attr("cy",function(d){return y(d.temp);})
+    .attr("class","dot1")
+    .on("mouseover", function(d) {      
+        div.transition()        
+            .duration(200)      
+            .style("opacity", 1000);        
+        div.html("<b>temp</b>:" +d.temp + "<br/>" +"<b>Time</b>:"+d.time)   
+            .style("left", (d3.event.pageX) + "px")     
+            .style("top", (d3.event.pageY - 28) + "px");    
+    })                  
+    .on("mouseout", function(d) {       
+        div.transition()        
+            .duration(1000)     
+            .style("opacity", 0);   
+    });
+  
+    svg.selectAll("dot").data(data)
+    .enter()
+    .append("circle")
+    .attr("r",5)
+    .attr("cx",function(d){return x(d.Date)})
+    .attr("cy",function(d){return y(d.pm25);})
+    .attr("class","dot3")
+    .on("mouseover", function(d) {      
+        div.transition()        
+            .duration(200)      
+            .style("opacity", 1000);        
+        div.html("<b>pm25</b>:" +d.pm25 + "<br/>" +"<b>Time</b>:"+d.time)   
+            .style("left", (d3.event.pageX) + "px")     
+            .style("top", (d3.event.pageY - 28) + "px");    
+    })                  
+    .on("mouseout", function(d) {       
+        div.transition()        
+            .duration(1000)     
+            .style("opacity", 0);   
+    });
+ svg.selectAll("dot").data(data)
+    .enter()
+    .append("circle")
+    .attr("r",5)
+    .attr("cx",function(d){return x(d.Date)})
+    .attr("cy",function(d){return y(d.pm10);})
+    .attr("class","dot4")
+    .on("mouseover", function(d) {      
+        div.transition()        
+            .duration(200)      
+            .style("opacity", 1000);        
+        div.html("<b>pm10</b>:" +d.pm10 + "<br/>" +"<b>Time</b>:"+d.time)   
+            .style("left", (d3.event.pageX) + "px")     
+            .style("top", (d3.event.pageY - 28) + "px");    
+    })                  
+    .on("mouseout", function(d) {       
+        div.transition()        
+            .duration(1000)     
+            .style("opacity", 0);   
+    });
+*/        svg.selectAll("dot").data(data)
+    .enter()
+    .append("circle")
+    .attr("r",5)
+    .attr("cx",function(d){return x(d.Date)})
+    .attr("cy",function(d){return y(d.ozone);})
+    .attr("class","dot")
+    .on("mouseover", function(d) {      
+        div.transition()        
+            .duration(200)      
+            .style("opacity", 1000);        
+        div.html("<b>ozone</b>:" +d.ozone + "<br/>" +"<b>Time</b>:"+d.time) 
+            .style("left", (d3.event.pageX) + "px")     
+            .style("top", (d3.event.pageY - 28) + "px");    
+    })                  
+    .on("mouseout", function(d) {       
+        div.transition()        
+            .duration(1000)     
+            .style("opacity", 0);   
+    });
+  
+/*    svg.selectAll("dot").data(data)
+    .enter()
+    .append("circle")
+    .attr("r",5)
+    .attr("cx",function(d){return x(d.Date)})
+    .attr("cy",function(d){return y(d.CO);})
+    .attr("class","dot1")
+    .on("mouseover", function(d) {      
+        div.transition()        
+            .duration(200)      
+            .style("opacity", 1000);        
+        div.html("<b>CO</b>:" +d.CO + "<br/>" +"<b>Time</b>:"+d.time)   
+            .style("left", (d3.event.pageX) + "px")     
+            .style("top", (d3.event.pageY - 28) + "px");    
+    })                  
+    .on("mouseout", function(d) {       
+        div.transition()        
+            .duration(1000)     
+            .style("opacity", 0);   
+    });
+  
+    svg.selectAll("dot").data(data)
+    .enter()
+    .append("circle")
+    .attr("r",5)
+    .attr("cx",function(d){return x(d.Date)})
+    .attr("cy",function(d){return y(d.SO);})
+    .attr("class","dot3")
+    .on("mouseover", function(d) {      
+        div.transition()        
+            .duration(200)      
+            .style("opacity", 1000);        
+        div.html("<b>SO</b>:" +d.SO + "<br/>" +"<b>Time</b>:"+d.time)   
+            .style("left", (d3.event.pageX) + "px")     
+            .style("top", (d3.event.pageY - 28) + "px");    
+    })                  
+    .on("mouseout", function(d) {       
+        div.transition()        
+            .duration(1000)     
+            .style("opacity", 0);   
+    });
+ svg.selectAll("dot").data(data)
+    .enter()
+    .append("circle")
+    .attr("r",5)
+    .attr("cx",function(d){return x(d.Date)})
+    .attr("cy",function(d){return y(d.NO);})
+    .attr("class","dot4")
+    .on("mouseover", function(d) {      
+        div.transition()        
+            .duration(200)      
+            .style("opacity", 1000);        
+        div.html("<b>NO</b>:" +d.NO + "<br/>" +"<b>Time</b>:"+d.time)   
+            .style("left", (d3.event.pageX) + "px")     
+            .style("top", (d3.event.pageY - 28) + "px");    
+    })                  
+    .on("mouseout", function(d) {       
+        div.transition()        
+            .duration(1000)     
+            .style("opacity", 0);   
+    });
+*/  
+  }
+  
+  // Get the data
+ /* d3.json("data.json", function(error, data) {
+    if (error) throw error;
+ */ 
+data= [{"dev_id": "airin", "temp": 34, "pm10": 2, "hum": 56, "time": "09:38:00", "date": "2018-07-18", "pm25": 25, "ozone":25, "CO":30, "SO":45, "NO":33},
+   {"dev_id": "airin", "temp": 50, "pm10": 30, "hum": 70, "time": "09:38:25", "date": "2018-07-18", "pm25": 39, "ozone":25, "CO":39, "SO":47, "NO":33},
+    {"dev_id": "airin", "temp": 40, "pm10": 35, "hum": 40, "time": "09:38:55", "date": "2018-07-18", "pm25": 38, "ozone":83, "CO":70, "SO":85, "NO":45},
+     {"dev_id": "airin", "temp": 56, "pm10": 13, "hum": 45, "time": "09:39:02", "date": "2018-07-18", "pm25": 17, "ozone":53, "CO":34, "SO":47, "NO":33},
+      {"dev_id": "airin", "temp": 34, "pm10": 14, "hum": 45, "time": "09:39:07", "date": "2018-07-18", "pm25": 16, "ozone":90, "CO":20, "SO":65, "NO":56},
+       {"dev_id": "airin", "temp": 54, "pm10": 35, "hum": 43, "time": "09:39:14", "date": "2018-07-18", "pm25": 35, "ozone":63, "CO":36, "SO":44, "NO":63},
+        {"dev_id": "airin", "temp": 55, "pm10": 26, "hum": 66, "time": "09:39:20", "date": "2018-07-18", "pm25": 24, "ozone":33, "CO":80, "SO":65, "NO":53},
+         {"dev_id": "airin", "temp": 44, "pm10": 27, "hum": 65, "time": "09:39:26", "date": "2018-07-18", "pm25": 23, "ozone":33, "CO":37, "SO":45, "NO":63},
+          {"dev_id": "airin", "temp": 76, "pm10": 38, "hum": 54, "time": "09:39:32", "date": "2018-07-18", "pm25": 32, "ozone":73, "CO":50, "SO":44, "NO":73},
+           {"dev_id": "airin", "temp": 23, "pm10": 29, "hum": 46, "time": "09:39:39", "date": "2018-07-18", "pm25": 21, "ozone":25, "CO":32, "SO":65, "NO":53},
+            {"dev_id": "airin", "temp": 31, "pm10": 30, "hum": 64, "time": "09:39:44", "date": "2018-07-18", "pm25": 32, "ozone":63, "CO":50, "SO":55, "NO":33},
+             {"dev_id": "airin", "temp": 75, "pm10": 21, "hum": 87, "time": "09:39:50", "date": "2018-07-18", "pm25": 33, "ozone":23, "CO":38, "SO":85, "NO":33},
+              {"dev_id": "airin", "temp": 57, "pm10": 22, "hum": 63, "time": "09:39:56", "date": "2018-07-18", "pm25": 34, "ozone":53, "CO":50, "SO":44, "NO":35},
+               {"dev_id": "airin", "temp": 87, "pm10": 23, "hum": 44, "time": "09:40:02", "date": "2018-07-18", "pm25": 25, "ozone":28, "CO":32, "SO":55, "NO":43},
+                {"dev_id": "airin", "temp": 75, "pm10": 24, "hum": 96, "time": "09:40:08", "date": "2018-07-18", "pm25": 26, "ozone":43, "CO":50, "SO":75, "NO":63},
+                 {"dev_id": "airin", "temp": 73, "pm10": 25, "hum": 56, "time": "09:40:14", "date": "2018-07-18", "pm25": 27, "ozone":25, "CO":38, "SO":95, "NO":53},
+                  {"dev_id": "airin", "temp": 86, "pm10": 26, "hum": 98, "time": "09:40:20", "date": "2018-07-18", "pm25": 28, "ozone":43, "CO":70, "SO":65, "NO":93},
+                   {"dev_id": "airin", "temp": 44, "pm10": 37, "hum": 87, "time": "09:40:25", "date": "2018-07-18", "pm25": 39, "ozone":21, "CO":34, "SO":47, "NO":13},
+                    {"dev_id": "airin", "temp": 99, "pm10": 38, "hum": 25, "time": "09:40:32", "date": "2018-07-18", "pm25": 30, "ozone":73, "CO":50, "SO":65, "NO":23},
+                     {"dev_id": "airin", "temp": 22, "pm10": 39, "hum": 86, "time": "09:40:38", "date": "2018-07-18", "pm25": 38, "ozone":22, "CO":35, "SO":44, "NO":43},
+                      {"dev_id": "airin", "temp": 75, "pm10": 30, "hum": 99, "time": "09:40:52", "date": "2018-07-18", "pm25": 37, "ozone":13, "CO":40, "SO":15, "NO":73},
+                       {"dev_id": "airin", "temp": 64, "pm10": 39, "hum": 57, "time": "09:40:58", "date": "2018-07-18", "pm25": 31, "ozone":28, "CO":31, "SO":47, "NO":33},
+                        {"dev_id": "airin", "temp": 26, "pm10": 38, "hum": 74, "time": "09:41:05", "date": "2018-07-18", "pm25": 32, "ozone":73, "CO":20, "SO":65, "NO":33},
+                         {"dev_id": "airin", "temp": 44, "pm10": 37, "hum": 56, "time": "09:41:12", "date": "2018-07-18", "pm25": 37, "ozone":29, "CO":33, "SO":44, "NO":63},
+                          {"dev_id": "airin", "temp": 45, "pm10": 26, "hum": 84, "time": "09:41:19", "date": "2018-07-18", "pm25": 24, "ozone":33, "CO":40, "SO":25, "NO":43},
+                           {"dev_id": "airin", "temp": 35, "pm10": 25, "hum": 74, "time": "09:41:31", "date": "2018-07-18", "pm25": 25, "ozone":22, "CO":35, "SO":42, "NO":23},
+                            {"dev_id": "airin", "temp": 33, "pm10": 24, "hum": 57, "time": "09:41:36", "date": "2018-07-18", "pm25": 36, "ozone":53, "CO":60, "SO":45, "NO":13},
+                             {"dev_id": "airin", "temp": 55, "pm10": 23, "hum": 66, "time": "09:41:43", "date": "2018-07-18", "pm25": 25, "ozone":43, "CO":90, "SO":65, "NO":73},
+                              {"dev_id": "airin", "temp": 45, "pm10": 28, "hum": 56, "time": "09:42:00", "date": "2018-07-18", "pm25": 27, "ozone":53, "CO":80, "SO":75, "NO":63}]
+    
+    
+    
+    
+    
+    
+    // trigger render
+    draw(data);
+
+</script>
+<script type="text/javascript">
+    
+
+// set the dimensions and margins of the graph
+  var margin = {top: 100, right: 20, bottom: 30, left: 230},
+      width = 400;// - margin.left - margin.right,
+      height = 200;// - margin.top - margin.bottom;
+
+  var div = d3.select("body").append("div") 
+        .attr("class", "tooltip")               
+        .style("opacity", 0);
+  
+  // parse the date / time
+  var parseTime = d3.timeParse("%H:%M:%S");
+  
+  // set the ranges
+  var x = d3.scaleTime().range([0, width]);
+  var y = d3.scaleLinear().range([height, 0]);
+  
+  // define the line
+/*  var valueline = d3.line()
+      .x(function(d) { return x(d.Date); })
+      .y(function(d) { return y(d.hum); });
+*/  // define the line
+  var valueline2 = d3.line()
+      .x(function(d) { return x(d.Date); })
+      .y(function(d) { return y(d.temp); });
+  // define the line
+ /* var valueline3 = d3.line()
+      .x(function(d) { return x(d.Date); })
+      .y(function(d) { return y(d.pm25); });
+   // define the line
+  var valueline4 = d3.line()
+      .x(function(d) { return x(d.Date); })
+      .y(function(d) { return y(d.pm10); });
+  var valueline5 = d3.line()
+      .x(function(d) { return x(d.Date); })
+      .y(function(d) { return y(d.ozone); });
+  // define the line
+  var valueline6 = d3.line()
+      .x(function(d) { return x(d.Date); })
+      .y(function(d) { return y(d.CO); });
+  // define the line
+  var valueline7 = d3.line()
+      .x(function(d) { return x(d.Date); })
+      .y(function(d) { return y(d.SO); });
+   // define the line
+  var valueline8 = d3.line()
+      .x(function(d) { return x(d.Date); })
+      .y(function(d) { return y(d.NO); });
+  
+ */   
+  // append the svg obgect to the body of the page
+  // appends a 'group' element to 'svg'
+  // moves the 'group' element to the top left margin
+  var svg = d3.select("body div#polk").append("svg")
+      .attr("width", width + margin.left + margin.right)
+      .attr("height", height + margin.top + margin.bottom)
+    .append("g")
+      .attr("transform","translate(" + margin.left + "," + margin.top + ")");
+  
+  function draw(data) {
+    
+    var data = data;
+    
+    // format the data
+    data.forEach(function(d) {
+        d.Date = parseTime(d.time);
+ //       d.hum = +d.hum;
+        d.temp = +d.temp;
+ /*       d.pm25 = +d.pm25;
+        d.pm10 = +d.pm10;
+        d.ozone = +d.ozone;
+        d.CO = +d.CO;
+        d.SO = +d.SO;
+        d.NO = +d.NO;
+*/    });
+    
+    // sort years ascending
+    /*data.sort(function(a, b){
+      return a["Date"]-b["Date"];
+    })*/
+   
+    // Scale the range of the data
+    x.domain(d3.extent(data, function(d) { return d.Date; }));
+    y.domain([0, d3.max(data, function(d) {
+      return Math.max(/*d.hum,*/ d.temp/*, d.pm25, d.pm10, d.ozone, d.CO, d.SO, d.NO*/); })]);
+      
+        // text label for the x axis
+       svg.append("text")      
+        .attr("x", 200)
+        .attr("y",  230)
+        .style("text-anchor", "middle")
+        .text("Time");
+    // text label for the y axis
+       svg.append("text")     
+        .attr("y", 0)
+        .attr("x",  -45)
+        .style("text-anchor", "middle")
+        .text("°C");
+
+      
+    
+ /*   // Add the valueline path.
+    svg.append("path")
+        .data([data])
+        .attr("class", "line")
+        .attr("d", valueline);
+ */   // Add the valueline path.
+    svg.append("path")
+        .data([data])
+        .attr("class", "line2")
+        .attr("d", valueline2);  
+ /*   // Add the valueline path.
+    svg.append("path")
+        .data([data])
+        .attr("class", "line3")
+        .attr("d", valueline3); 
+    svg.append("path")
+        .data([data])
+        .attr("class", "line4")
+        .attr("d", valueline4); 
+          // Add the valueline path.
+    svg.append("path")
+        .data([data])
+        .attr("class", "line5")
+        .attr("d", valueline5);
+    // Add the valueline path.
+    svg.append("path")
+        .data([data])
+        .attr("class", "line6")
+        .attr("d", valueline6);  
+    // Add the valueline path.
+    svg.append("path")
+        .data([data])
+        .attr("class", "line7")
+        .attr("d", valueline7); 
+    svg.append("path")
+        .data([data])
+        .attr("class", "line8")
+        .attr("d", valueline8); 
+  */  // Add the X Axis
+    svg.append("g")
+        .attr("transform", "translate(0," + height + ")")
+        .call(d3.axisBottom(x));
+  
+    // Add the Y Axis
+    svg.append("g")
+        .call(d3.axisLeft(y));
+  
+ /*   svg.selectAll("dot").data(data)
+    .enter()
+    .append("circle")
+    .attr("r",5)
+    .attr("cx",function(d){return x(d.Date)})
+    .attr("cy",function(d){return y(d.hum);})
+    .attr("class","dot")
+    .on("mouseover", function(d) {      
+        div.transition()        
+            .duration(200)      
+            .style("opacity", 1000);        
+        div.html("<b>hum</b>:" +d.hum + "<br/>" +"<b>Time</b>:"+d.time) 
+            .style("left", (d3.event.pageX) + "px")     
+            .style("top", (d3.event.pageY - 28) + "px");    
+    })                  
+    .on("mouseout", function(d) {       
+        div.transition()        
+            .duration(1000)     
+            .style("opacity", 0);   
+    });
+  
+*/   svg.selectAll("dot").data(data)
+    .enter()
+    .append("circle")
+    .attr("r",5)
+    .attr("cx",function(d){return x(d.Date)})
+    .attr("cy",function(d){return y(d.temp);})
+    .attr("class","dot1")
+    .on("mouseover", function(d) {      
+        div.transition()        
+            .duration(200)      
+            .style("opacity", 1000);        
+        div.html("<b>temp</b>:" +d.temp + "<br/>" +"<b>Time</b>:"+d.time)   
+            .style("left", (d3.event.pageX) + "px")     
+            .style("top", (d3.event.pageY - 28) + "px");    
+    })                  
+    .on("mouseout", function(d) {       
+        div.transition()        
+            .duration(1000)     
+            .style("opacity", 0);   
+    });
+  
+ /*   svg.selectAll("dot").data(data)
+    .enter()
+    .append("circle")
+    .attr("r",5)
+    .attr("cx",function(d){return x(d.Date)})
+    .attr("cy",function(d){return y(d.pm25);})
+    .attr("class","dot3")
+    .on("mouseover", function(d) {      
+        div.transition()        
+            .duration(200)      
+            .style("opacity", 1000);        
+        div.html("<b>pm25</b>:" +d.pm25 + "<br/>" +"<b>Time</b>:"+d.time)   
+            .style("left", (d3.event.pageX) + "px")     
+            .style("top", (d3.event.pageY - 28) + "px");    
+    })                  
+    .on("mouseout", function(d) {       
+        div.transition()        
+            .duration(1000)     
+            .style("opacity", 0);   
+    });
+ svg.selectAll("dot").data(data)
+    .enter()
+    .append("circle")
+    .attr("r",5)
+    .attr("cx",function(d){return x(d.Date)})
+    .attr("cy",function(d){return y(d.pm10);})
+    .attr("class","dot4")
+    .on("mouseover", function(d) {      
+        div.transition()        
+            .duration(200)      
+            .style("opacity", 1000);        
+        div.html("<b>pm10</b>:" +d.pm10 + "<br/>" +"<b>Time</b>:"+d.time)   
+            .style("left", (d3.event.pageX) + "px")     
+            .style("top", (d3.event.pageY - 28) + "px");    
+    })                  
+    .on("mouseout", function(d) {       
+        div.transition()        
+            .duration(1000)     
+            .style("opacity", 0);   
+    });
+          svg.selectAll("dot").data(data)
+    .enter()
+    .append("circle")
+    .attr("r",5)
+    .attr("cx",function(d){return x(d.Date)})
+    .attr("cy",function(d){return y(d.ozone);})
+    .attr("class","dot")
+    .on("mouseover", function(d) {      
+        div.transition()        
+            .duration(200)      
+            .style("opacity", 1000);        
+        div.html("<b>ozone</b>:" +d.ozone + "<br/>" +"<b>Time</b>:"+d.time) 
+            .style("left", (d3.event.pageX) + "px")     
+            .style("top", (d3.event.pageY - 28) + "px");    
+    })                  
+    .on("mouseout", function(d) {       
+        div.transition()        
+            .duration(1000)     
+            .style("opacity", 0);   
+    });
+  
+    svg.selectAll("dot").data(data)
+    .enter()
+    .append("circle")
+    .attr("r",5)
+    .attr("cx",function(d){return x(d.Date)})
+    .attr("cy",function(d){return y(d.CO);})
+    .attr("class","dot1")
+    .on("mouseover", function(d) {      
+        div.transition()        
+            .duration(200)      
+            .style("opacity", 1000);        
+        div.html("<b>CO</b>:" +d.CO + "<br/>" +"<b>Time</b>:"+d.time)   
+            .style("left", (d3.event.pageX) + "px")     
+            .style("top", (d3.event.pageY - 28) + "px");    
+    })                  
+    .on("mouseout", function(d) {       
+        div.transition()        
+            .duration(1000)     
+            .style("opacity", 0);   
+    });
+  
+    svg.selectAll("dot").data(data)
+    .enter()
+    .append("circle")
+    .attr("r",5)
+    .attr("cx",function(d){return x(d.Date)})
+    .attr("cy",function(d){return y(d.SO);})
+    .attr("class","dot3")
+    .on("mouseover", function(d) {      
+        div.transition()        
+            .duration(200)      
+            .style("opacity", 1000);        
+        div.html("<b>SO</b>:" +d.SO + "<br/>" +"<b>Time</b>:"+d.time)   
+            .style("left", (d3.event.pageX) + "px")     
+            .style("top", (d3.event.pageY - 28) + "px");    
+    })                  
+    .on("mouseout", function(d) {       
+        div.transition()        
+            .duration(1000)     
+            .style("opacity", 0);   
+    });
+ svg.selectAll("dot").data(data)
+    .enter()
+    .append("circle")
+    .attr("r",5)
+    .attr("cx",function(d){return x(d.Date)})
+    .attr("cy",function(d){return y(d.NO);})
+    .attr("class","dot4")
+    .on("mouseover", function(d) {      
+        div.transition()        
+            .duration(200)      
+            .style("opacity", 1000);        
+        div.html("<b>NO</b>:" +d.NO + "<br/>" +"<b>Time</b>:"+d.time)   
+            .style("left", (d3.event.pageX) + "px")     
+            .style("top", (d3.event.pageY - 28) + "px");    
+    })                  
+    .on("mouseout", function(d) {       
+        div.transition()        
+            .duration(1000)     
+            .style("opacity", 0);   
+    });
+*/  
+  }
+  
+  // Get the data
+ /* d3.json("data.json", function(error, data) {
+    if (error) throw error;
+ */ 
+data= [{"dev_id": "airin", "temp": 34, "pm10": 2, "hum": 56, "time": "09:38:00", "date": "2018-07-18", "pm25": 25, "ozone":25, "CO":30, "SO":45, "NO":33},
+   {"dev_id": "airin", "temp": 50, "pm10": 30, "hum": 70, "time": "09:38:25", "date": "2018-07-18", "pm25": 39, "ozone":25, "CO":39, "SO":47, "NO":33},
+    {"dev_id": "airin", "temp": 40, "pm10": 35, "hum": 40, "time": "09:38:55", "date": "2018-07-18", "pm25": 38, "ozone":83, "CO":70, "SO":85, "NO":45},
+     {"dev_id": "airin", "temp": 56, "pm10": 13, "hum": 45, "time": "09:39:02", "date": "2018-07-18", "pm25": 17, "ozone":53, "CO":34, "SO":47, "NO":33},
+      {"dev_id": "airin", "temp": 34, "pm10": 14, "hum": 45, "time": "09:39:07", "date": "2018-07-18", "pm25": 16, "ozone":93, "CO":20, "SO":65, "NO":56},
+       {"dev_id": "airin", "temp": 54, "pm10": 35, "hum": 43, "time": "09:39:14", "date": "2018-07-18", "pm25": 35, "ozone":63, "CO":36, "SO":44, "NO":63},
+        {"dev_id": "airin", "temp": 55, "pm10": 26, "hum": 66, "time": "09:39:20", "date": "2018-07-18", "pm25": 24, "ozone":33, "CO":80, "SO":65, "NO":53},
+         {"dev_id": "airin", "temp": 44, "pm10": 27, "hum": 65, "time": "09:39:26", "date": "2018-07-18", "pm25": 23, "ozone":33, "CO":37, "SO":45, "NO":63},
+          {"dev_id": "airin", "temp": 76, "pm10": 38, "hum": 54, "time": "09:39:32", "date": "2018-07-18", "pm25": 32, "ozone":73, "CO":50, "SO":44, "NO":73},
+           {"dev_id": "airin", "temp": 23, "pm10": 29, "hum": 46, "time": "09:39:39", "date": "2018-07-18", "pm25": 21, "ozone":25, "CO":32, "SO":65, "NO":53},
+            {"dev_id": "airin", "temp": 31, "pm10": 30, "hum": 64, "time": "09:39:44", "date": "2018-07-18", "pm25": 32, "ozone":63, "CO":50, "SO":55, "NO":33},
+             {"dev_id": "airin", "temp": 75, "pm10": 21, "hum": 87, "time": "09:39:50", "date": "2018-07-18", "pm25": 33, "ozone":23, "CO":38, "SO":85, "NO":33},
+              {"dev_id": "airin", "temp": 57, "pm10": 22, "hum": 63, "time": "09:39:56", "date": "2018-07-18", "pm25": 34, "ozone":53, "CO":50, "SO":44, "NO":35},
+               {"dev_id": "airin", "temp": 80, "pm10": 23, "hum": 44, "time": "09:40:02", "date": "2018-07-18", "pm25": 25, "ozone":28, "CO":32, "SO":55, "NO":43},
+                {"dev_id": "airin", "temp": 75, "pm10": 24, "hum": 96, "time": "09:40:08", "date": "2018-07-18", "pm25": 26, "ozone":43, "CO":50, "SO":75, "NO":63},
+                 {"dev_id": "airin", "temp": 73, "pm10": 25, "hum": 56, "time": "09:40:14", "date": "2018-07-18", "pm25": 27, "ozone":25, "CO":38, "SO":95, "NO":53},
+                  {"dev_id": "airin", "temp": 80, "pm10": 26, "hum": 98, "time": "09:40:20", "date": "2018-07-18", "pm25": 28, "ozone":43, "CO":70, "SO":65, "NO":93},
+                   {"dev_id": "airin", "temp": 44, "pm10": 37, "hum": 87, "time": "09:40:25", "date": "2018-07-18", "pm25": 39, "ozone":21, "CO":34, "SO":47, "NO":13},
+                    {"dev_id": "airin", "temp": 25, "pm10": 38, "hum": 25, "time": "09:40:32", "date": "2018-07-18", "pm25": 30, "ozone":73, "CO":50, "SO":65, "NO":23},
+                     {"dev_id": "airin", "temp": 22, "pm10": 39, "hum": 86, "time": "09:40:38", "date": "2018-07-18", "pm25": 38, "ozone":22, "CO":35, "SO":44, "NO":43},
+                      {"dev_id": "airin", "temp": 75, "pm10": 30, "hum": 99, "time": "09:40:52", "date": "2018-07-18", "pm25": 37, "ozone":13, "CO":40, "SO":15, "NO":73},
+                       {"dev_id": "airin", "temp": 64, "pm10": 39, "hum": 57, "time": "09:40:58", "date": "2018-07-18", "pm25": 31, "ozone":28, "CO":31, "SO":47, "NO":33},
+                        {"dev_id": "airin", "temp": 26, "pm10": 38, "hum": 74, "time": "09:41:05", "date": "2018-07-18", "pm25": 32, "ozone":73, "CO":20, "SO":65, "NO":33},
+                         {"dev_id": "airin", "temp": 44, "pm10": 37, "hum": 56, "time": "09:41:12", "date": "2018-07-18", "pm25": 37, "ozone":29, "CO":33, "SO":44, "NO":63},
+                          {"dev_id": "airin", "temp": 45, "pm10": 26, "hum": 84, "time": "09:41:19", "date": "2018-07-18", "pm25": 24, "ozone":33, "CO":40, "SO":25, "NO":43},
+                           {"dev_id": "airin", "temp": 35, "pm10": 25, "hum": 74, "time": "09:41:31", "date": "2018-07-18", "pm25": 25, "ozone":22, "CO":35, "SO":42, "NO":23},
+                            {"dev_id": "airin", "temp": 33, "pm10": 24, "hum": 57, "time": "09:41:36", "date": "2018-07-18", "pm25": 36, "ozone":53, "CO":60, "SO":45, "NO":13},
+                             {"dev_id": "airin", "temp": 55, "pm10": 23, "hum": 66, "time": "09:41:43", "date": "2018-07-18", "pm25": 25, "ozone":43, "CO":90, "SO":65, "NO":73},
+                              {"dev_id": "airin", "temp": 45, "pm10": 28, "hum": 56, "time": "09:42:00", "date": "2018-07-18", "pm25": 27, "ozone":53, "CO":80, "SO":75, "NO":63}]
+    
+    
+    
+    
+    
+    
+    // trigger render
+    draw(data);
+
+</script>
+<script type="text/javascript">
+     // set the dimensions and margins of the graph
+  var margin = {top: 100, right: 20, bottom: 30, left: 230},
+      width = 400;// - margin.left - margin.right,
+      height = 200;// - margin.top - margin.bottom;
+
+  var div = d3.select("body").append("div") 
+        .attr("class", "tooltip")               
+        .style("opacity", 0);
+  
+  // parse the date / time
+  var parseTime = d3.timeParse("%H:%M:%S");
+  
+  // set the ranges
+  var x = d3.scaleTime().range([0, width]);
+  var y = d3.scaleLinear().range([height, 0]);
+  
+  // define the line
+  var valueline = d3.line()
+      .x(function(d) { return x(d.Date); })
+      .y(function(d) { return y(d.hum); });
+/*  // define the line
+  var valueline2 = d3.line()
+      .x(function(d) { return x(d.Date); })
+      .y(function(d) { return y(d.temp); });
+  // define the line
+  var valueline3 = d3.line()
+      .x(function(d) { return x(d.Date); })
+      .y(function(d) { return y(d.pm25); });
+   // define the line
+  var valueline4 = d3.line()
+      .x(function(d) { return x(d.Date); })
+      .y(function(d) { return y(d.pm10); });
+  var valueline5 = d3.line()
+      .x(function(d) { return x(d.Date); })
+      .y(function(d) { return y(d.ozone); });
+  // define the line
+  var valueline6 = d3.line()
+      .x(function(d) { return x(d.Date); })
+      .y(function(d) { return y(d.CO); });
+  // define the line
+  var valueline7 = d3.line()
+      .x(function(d) { return x(d.Date); })
+      .y(function(d) { return y(d.SO); });
+   // define the line
+  var valueline8 = d3.line()
+      .x(function(d) { return x(d.Date); })
+      .y(function(d) { return y(d.NO); });
+  
+ */   
+  // append the svg obgect to the body of the page
+  // appends a 'group' element to 'svg'
+  // moves the 'group' element to the top left margin
+  var svg = d3.select("body div#lock").append("svg")
+      .attr("width", width + margin.left + margin.right)
+      .attr("height", height + margin.top + margin.bottom)
+    .append("g")
+      .attr("transform","translate(" + margin.left + "," + margin.top + ")");
+  
+  function draw(data) {
+    
+    var data = data;
+    
+    // format the data
+    data.forEach(function(d) {
+        d.Date = parseTime(d.time);
+        d.hum = +d.hum;
+ /*       d.temp = +d.temp;
+        d.pm25 = +d.pm25;
+        d.pm10 = +d.pm10;
+        d.ozone = +d.ozone;
+        d.CO = +d.CO;
+        d.SO = +d.SO;
+        d.NO = +d.NO;
+*/    });
+    
+    // sort years ascending
+    /*data.sort(function(a, b){
+      return a["Date"]-b["Date"];
+    })*/
+   
+    // Scale the range of the data
+    x.domain(d3.extent(data, function(d) { return d.Date; }));
+    y.domain([0, d3.max(data, function(d) {
+      return Math.max(d.hum/*, d.temp, d.pm25, d.pm10, d.ozone, d.CO, d.SO, d.NO*/); })]);
+      
+        // text label for the x axis
+       svg.append("text")      
+        .attr("x", 200)
+        .attr("y",  230)
+        .style("text-anchor", "middle")
+        .text("Time");
+    // text label for the y axis
+       svg.append("text")     
+        .attr("y", 0)
+        .attr("x",  -45)
+        .style("text-anchor", "middle")
+        .text("%");
+
+      
+    
+    // Add the valueline path.
+    svg.append("path")
+        .data([data])
+        .attr("class", "line")
+        .attr("d", valueline);
+ /*   // Add the valueline path.
+    svg.append("path")
+        .data([data])
+        .attr("class", "line2")
+        .attr("d", valueline2);  
+    // Add the valueline path.
+    svg.append("path")
+        .data([data])
+        .attr("class", "line3")
+        .attr("d", valueline3); 
+    svg.append("path")
+        .data([data])
+        .attr("class", "line4")
+        .attr("d", valueline4); 
+          // Add the valueline path.
+    svg.append("path")
+        .data([data])
+        .attr("class", "line5")
+        .attr("d", valueline5);
+    // Add the valueline path.
+    svg.append("path")
+        .data([data])
+        .attr("class", "line6")
+        .attr("d", valueline6);  
+    // Add the valueline path.
+    svg.append("path")
+        .data([data])
+        .attr("class", "line7")
+        .attr("d", valueline7); 
+    svg.append("path")
+        .data([data])
+        .attr("class", "line8")
+        .attr("d", valueline8); 
+  */  // Add the X Axis
+    svg.append("g")
+        .attr("transform", "translate(0," + height + ")")
+        .call(d3.axisBottom(x));
+  
+    // Add the Y Axis
+    svg.append("g")
+        .call(d3.axisLeft(y));
+  
+    svg.selectAll("dot").data(data)
+    .enter()
+    .append("circle")
+    .attr("r",5)
+    .attr("cx",function(d){return x(d.Date)})
+    .attr("cy",function(d){return y(d.hum);})
+    .attr("class","dot")
+    .on("mouseover", function(d) {      
+        div.transition()        
+            .duration(200)      
+            .style("opacity", 1000);        
+        div.html("<b>hum</b>:" +d.hum + "<br/>" +"<b>Time</b>:"+d.time) 
+            .style("left", (d3.event.pageX) + "px")     
+            .style("top", (d3.event.pageY - 28) + "px");    
+    })                  
+    .on("mouseout", function(d) {       
+        div.transition()        
+            .duration(1000)     
+            .style("opacity", 0);   
+    });
+  
+  
+  }
+  
+  // Get the data
+ /* d3.json("data.json", function(error, data) {
+    if (error) throw error;
+ */ 
+data= [{"dev_id": "airin", "temp": 34, "pm10": 2, "hum": 56, "time": "09:38:00", "date": "2018-07-18", "pm25": 25, "ozone":25, "CO":30, "SO":45, "NO":33},
+   {"dev_id": "airin", "temp": 50, "pm10": 30, "hum": 70, "time": "09:38:25", "date": "2018-07-18", "pm25": 39, "ozone":25, "CO":39, "SO":47, "NO":33},
+    {"dev_id": "airin", "temp": 40, "pm10": 35, "hum": 40, "time": "09:38:55", "date": "2018-07-18", "pm25": 38, "ozone":83, "CO":70, "SO":85, "NO":45},
+     {"dev_id": "airin", "temp": 56, "pm10": 13, "hum": 45, "time": "09:39:02", "date": "2018-07-18", "pm25": 17, "ozone":53, "CO":34, "SO":47, "NO":33},
+      {"dev_id": "airin", "temp": 34, "pm10": 14, "hum": 45, "time": "09:39:07", "date": "2018-07-18", "pm25": 16, "ozone":93, "CO":20, "SO":65, "NO":56},
+       {"dev_id": "airin", "temp": 54, "pm10": 35, "hum": 43, "time": "09:39:14", "date": "2018-07-18", "pm25": 35, "ozone":63, "CO":36, "SO":44, "NO":63},
+        {"dev_id": "airin", "temp": 55, "pm10": 26, "hum": 66, "time": "09:39:20", "date": "2018-07-18", "pm25": 24, "ozone":33, "CO":80, "SO":65, "NO":53},
+         {"dev_id": "airin", "temp": 44, "pm10": 27, "hum": 65, "time": "09:39:26", "date": "2018-07-18", "pm25": 23, "ozone":33, "CO":37, "SO":45, "NO":63},
+          {"dev_id": "airin", "temp": 76, "pm10": 38, "hum": 54, "time": "09:39:32", "date": "2018-07-18", "pm25": 32, "ozone":73, "CO":50, "SO":44, "NO":73},
+           {"dev_id": "airin", "temp": 23, "pm10": 29, "hum": 46, "time": "09:39:39", "date": "2018-07-18", "pm25": 21, "ozone":25, "CO":32, "SO":65, "NO":53},
+            {"dev_id": "airin", "temp": 31, "pm10": 30, "hum": 64, "time": "09:39:44", "date": "2018-07-18", "pm25": 32, "ozone":63, "CO":50, "SO":55, "NO":33},
+             {"dev_id": "airin", "temp": 75, "pm10": 21, "hum": 87, "time": "09:39:50", "date": "2018-07-18", "pm25": 33, "ozone":23, "CO":38, "SO":85, "NO":33},
+              {"dev_id": "airin", "temp": 57, "pm10": 22, "hum": 63, "time": "09:39:56", "date": "2018-07-18", "pm25": 34, "ozone":53, "CO":50, "SO":44, "NO":35},
+               {"dev_id": "airin", "temp": 87, "pm10": 23, "hum": 44, "time": "09:40:02", "date": "2018-07-18", "pm25": 25, "ozone":28, "CO":32, "SO":55, "NO":43},
+                {"dev_id": "airin", "temp": 75, "pm10": 24, "hum": 96, "time": "09:40:08", "date": "2018-07-18", "pm25": 26, "ozone":43, "CO":50, "SO":75, "NO":63},
+                 {"dev_id": "airin", "temp": 73, "pm10": 25, "hum": 56, "time": "09:40:14", "date": "2018-07-18", "pm25": 27, "ozone":25, "CO":38, "SO":95, "NO":53},
+                  {"dev_id": "airin", "temp": 86, "pm10": 26, "hum": 98, "time": "09:40:20", "date": "2018-07-18", "pm25": 28, "ozone":43, "CO":70, "SO":65, "NO":93},
+                   {"dev_id": "airin", "temp": 44, "pm10": 37, "hum": 87, "time": "09:40:25", "date": "2018-07-18", "pm25": 39, "ozone":21, "CO":34, "SO":47, "NO":13},
+                    {"dev_id": "airin", "temp": 99, "pm10": 38, "hum": 25, "time": "09:40:32", "date": "2018-07-18", "pm25": 30, "ozone":73, "CO":50, "SO":65, "NO":23},
+                     {"dev_id": "airin", "temp": 22, "pm10": 39, "hum": 86, "time": "09:40:38", "date": "2018-07-18", "pm25": 38, "ozone":22, "CO":35, "SO":44, "NO":43},
+                      {"dev_id": "airin", "temp": 75, "pm10": 30, "hum": 99, "time": "09:40:52", "date": "2018-07-18", "pm25": 37, "ozone":13, "CO":40, "SO":15, "NO":73},
+                       {"dev_id": "airin", "temp": 64, "pm10": 39, "hum": 57, "time": "09:40:58", "date": "2018-07-18", "pm25": 31, "ozone":28, "CO":31, "SO":47, "NO":33},
+                        {"dev_id": "airin", "temp": 26, "pm10": 38, "hum": 74, "time": "09:41:05", "date": "2018-07-18", "pm25": 32, "ozone":73, "CO":20, "SO":65, "NO":33},
+                         {"dev_id": "airin", "temp": 44, "pm10": 37, "hum": 56, "time": "09:41:12", "date": "2018-07-18", "pm25": 37, "ozone":29, "CO":33, "SO":44, "NO":63},
+                          {"dev_id": "airin", "temp": 45, "pm10": 26, "hum": 84, "time": "09:41:19", "date": "2018-07-18", "pm25": 24, "ozone":33, "CO":40, "SO":25, "NO":43},
+                           {"dev_id": "airin", "temp": 35, "pm10": 25, "hum": 74, "time": "09:41:31", "date": "2018-07-18", "pm25": 25, "ozone":22, "CO":35, "SO":42, "NO":23},
+                            {"dev_id": "airin", "temp": 33, "pm10": 24, "hum": 57, "time": "09:41:36", "date": "2018-07-18", "pm25": 36, "ozone":53, "CO":60, "SO":45, "NO":13},
+                             {"dev_id": "airin", "temp": 55, "pm10": 23, "hum": 66, "time": "09:41:43", "date": "2018-07-18", "pm25": 25, "ozone":43, "CO":90, "SO":65, "NO":73},
+                              {"dev_id": "airin", "temp": 45, "pm10": 28, "hum": 56, "time": "09:42:00", "date": "2018-07-18", "pm25": 27, "ozone":53, "CO":80, "SO":75, "NO":63}]
+    
+    
+    
+    
+    
+    
+    // trigger render
+    draw(data);
+
+
+
+</script>
+
+</html>
